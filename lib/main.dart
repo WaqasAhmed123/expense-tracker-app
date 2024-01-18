@@ -1,6 +1,7 @@
 import 'package:blocship/cubits/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'screens/entry_screen.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -19,12 +20,14 @@ class MyApp extends StatelessWidget {
         // Add more providers if needed
       ],
       child: MaterialApp(
+        
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          scaffoldBackgroundColor: Color(0xFFeae8e9),
+          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HomeScreen(),
+        home: EntryScreen(),
       ),
     );
   }
