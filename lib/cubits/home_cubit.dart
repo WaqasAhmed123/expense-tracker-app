@@ -1,0 +1,6 @@
+import 'package:blocship/states/home_screen_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class HomeCubit extends Cubit<HomeState>{
+HomeCubit() : super(HomeInitialState());
+}
