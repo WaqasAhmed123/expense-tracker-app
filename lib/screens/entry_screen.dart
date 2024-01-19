@@ -128,37 +128,10 @@ class EntryScreen extends StatelessWidget {
                           readOnly: true,
                           context: context,
                           contoller: timeController),
-                      // TextField(
-                      //   controller: TextEditingController(
-                      //     text: DateFormat('h:mm a').format(DateTime(
-                      //         2022,
-                      //         1,
-                      //         1,
-                      //         entryCubit.selectedTime.hour,
-                      //         entryCubit.selectedTime.minute)),
-                      //   ),
-                      //   readOnly: true,
-                      //   decoration: const InputDecoration(labelText: 'Time'),
-                      // ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 16),
-                // DropdownButton<String>(
-                //   value: "example",
-                //   onChanged: (String? newValue) {
-                //      newValue!;
-                //   // value: context.read<EntryScreenBloc>().state.selectedCategory,
-                //   // onChanged: (String? newValue) {
-                //   //   context.read<EntryScreenBloc>().state.selectedCategory = newValue!;
-                //   },
-                //   items: ['Expense', 'Income'].map<DropdownMenuItem<String>>((String value) {
-                //     return DropdownMenuItem<String>(
-                //       value: value,
-                //       child: Text(value),
-                //     );
-                //   }).toList(),
-                // ),
                 DropdownButtonFormField(
                   onChanged: (value) {
                     entryCubit.transactionType = value;
@@ -199,7 +172,6 @@ class EntryScreen extends StatelessWidget {
                     );
                   }).toList(),
                 ),
-
                 const SizedBox(height: 16),
                 TextField(
                   controller: TextEditingController(),
