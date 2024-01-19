@@ -88,7 +88,13 @@ class EntryScreen extends StatelessWidget {
                     Expanded(
                       child: TextField(
                         controller: TextEditingController(
-                            text:DateFormat('h:mm a').format(entryCubit.selectedTime),),
+                          text: DateFormat('h:mm a').format(DateTime(
+                              2022,
+                              1,
+                              1,
+                              entryCubit.selectedTime.hour,
+                              entryCubit.selectedTime.minute)),
+                        ),
                         readOnly: true,
                         decoration: const InputDecoration(labelText: 'Time'),
                       ),
