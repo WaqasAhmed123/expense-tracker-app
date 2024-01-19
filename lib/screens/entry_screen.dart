@@ -179,16 +179,16 @@ class EntryScreen extends StatelessWidget {
                   },
                   decoration: InputDecoration(
                       filled: true,
-                      hintText: "hintText",
-                      hintStyle: TextStyle(
-                        fontSize: 13.0,
-                        // fontFamily: "Poppins",
-                        color: const Color(0xff0e0e0e).withOpacity(0.3),
-                        fontWeight: FontWeight.w500,
-                      ),
+                      // hintText: "hintText",
+                      // hintStyle: TextStyle(
+                      //   fontSize: 13.0,
+                      //   // fontFamily: "Poppins",
+                      //   color: const Color(0xff0e0e0e).withOpacity(0.3),
+                      //   fontWeight: FontWeight.w500,
+                      // ),
                       fillColor: const Color(0xffffffff),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none),
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 16)),
