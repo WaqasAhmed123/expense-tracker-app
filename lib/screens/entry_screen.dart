@@ -6,6 +6,8 @@ class EntryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime selectedDate = DateTime.now();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense Entry'),
@@ -28,7 +30,18 @@ class EntryScreen extends StatelessWidget {
               children: [
                 IconButton(
                   icon: const Icon(Icons.calendar_today),
-                  onPressed: () {
+                  onPressed: () async {
+                    final DateTime? picked = await showDatePicker(
+                        context: context,
+                        initialDate: selectedDate,
+                        firstDate: DateTime(2015, 8),
+                        lastDate: DateTime(2101));
+                    if (picked != null && picked != selectedDate) {
+                      // setState(() {
+                      //   selectedDate = picked;
+                      // }
+                      // );
+                    }
                     // Show date picker and update the state
                   },
                 ),
