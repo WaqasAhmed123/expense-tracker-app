@@ -123,24 +123,24 @@ class EntryScreen extends StatelessWidget {
                       width: 10,
                     ),
                     Expanded(
-                        child: textInput(
-                            hintText: 'Time',
-                            readOnly: true,
-                            context: context,
-                            contoller: timeController)
-                        // TextField(
-                        //   controller: TextEditingController(
-                        //     text: DateFormat('h:mm a').format(DateTime(
-                        //         2022,
-                        //         1,
-                        //         1,
-                        //         entryCubit.selectedTime.hour,
-                        //         entryCubit.selectedTime.minute)),
-                        //   ),
-                        //   readOnly: true,
-                        //   decoration: const InputDecoration(labelText: 'Time'),
-                        // ),
-                        ),
+                      child: textInput(
+                          hintText: 'Time',
+                          readOnly: true,
+                          context: context,
+                          contoller: timeController),
+                      // TextField(
+                      //   controller: TextEditingController(
+                      //     text: DateFormat('h:mm a').format(DateTime(
+                      //         2022,
+                      //         1,
+                      //         1,
+                      //         entryCubit.selectedTime.hour,
+                      //         entryCubit.selectedTime.minute)),
+                      //   ),
+                      //   readOnly: true,
+                      //   decoration: const InputDecoration(labelText: 'Time'),
+                      // ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -159,6 +159,51 @@ class EntryScreen extends StatelessWidget {
                 //     );
                 //   }).toList(),
                 // ),
+                DropdownButtonFormField(
+                  onChanged: (string) {
+                    string = "kfha";
+                  },
+                  style: const TextStyle(
+                    fontSize: 13.0,
+                    // fontFamily: "Poppins",
+                    color: Color(0xff0e0e0e),
+                    fontWeight: FontWeight.w500,
+                  ),
+                  // value: "selectedOptions",
+                  // value: "selectedOptions",
+                  validator: (value) {
+                    if (value == null) {
+                      return ("Field can't be null");
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      filled: true,
+                      hintText: "hintText",
+                      hintStyle: TextStyle(
+                        fontSize: 13.0,
+                        // fontFamily: "Poppins",
+                        color: const Color(0xff0e0e0e).withOpacity(0.3),
+                        fontWeight: FontWeight.w500,
+                      ),
+                      fillColor: const Color(0xffffffff),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14),
+                          borderSide: BorderSide.none),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 16)),
+                  items: ["items", "ahflkk"]
+                      .map<DropdownMenuItem<String>>((String key) {
+                    return DropdownMenuItem<String>(
+                      value: key,
+                      child: Text(
+                        key,
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    );
+                  }).toList(),
+                ),
+
                 const SizedBox(height: 16),
                 TextField(
                   controller: TextEditingController(),
