@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-Widget textInput({maxLimit,height,hintText}) {
+Widget textInput(
+    {maxLimit, height, hintText, context, readOnly = false, contoller}) {
   return Container(
     decoration: BoxDecoration(
       color: Colors.white,
@@ -10,13 +11,16 @@ Widget textInput({maxLimit,height,hintText}) {
     height: height,
     child: Center(
       child: TextFormField(
-        // controller: context.read<EntryScreenBloc>().state.titleController,
+        style: Theme.of(context).textTheme.bodyMedium,
+        controller: contoller,
         decoration: InputDecoration(
+          hintStyle: Theme.of(context).textTheme.bodyMedium,
           hintText: hintText,
           border: InputBorder.none,
           counterText: '', // Set counterText to an empty string
         ),
         maxLength: maxLimit,
+        readOnly: readOnly,
       ),
     ),
   );

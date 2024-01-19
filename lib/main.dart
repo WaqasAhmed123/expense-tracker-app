@@ -24,8 +24,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          textTheme: const TextTheme(
+              bodyMedium: TextStyle(
+            fontSize: 14,
+            color: Colors.grey,
+          )),
           scaffoldBackgroundColor: const Color(0xFFeae8e9),
-          // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          primaryColor: Colors.grey,
+          // primaryColorLight: Colors.grey,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
           useMaterial3: true,
         ),
         home: const EntryScreen(),
