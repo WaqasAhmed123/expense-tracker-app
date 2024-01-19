@@ -1,3 +1,4 @@
+import 'package:blocship/cubits/entry_cubit.dart';
 import 'package:blocship/cubits/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,17 +18,17 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
+        BlocProvider<EntryCubit>(create: (context) => EntryCubit()),
         // Add more providers if needed
       ],
       child: MaterialApp(
-        
         title: 'Flutter Demo',
         theme: ThemeData(
-          scaffoldBackgroundColor: Color(0xFFeae8e9),
+          scaffoldBackgroundColor: const Color(0xFFeae8e9),
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: EntryScreen(),
+        home: const EntryScreen(),
       ),
     );
   }

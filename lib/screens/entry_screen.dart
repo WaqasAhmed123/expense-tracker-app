@@ -3,13 +3,16 @@ import 'package:blocship/states/entry_screen_state.dart';
 import 'package:blocship/widgets/textInput.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class EntryScreen extends StatelessWidget {
   const EntryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // EntryCubit entryCubit = EntryCubit.get(context);
     EntryCubit entryCubit = BlocProvider.of(context);
+    TextEditingController dateController = TextEditingController();
     return BlocBuilder<EntryCubit, EntryState>(
       builder: (context, state) {
         return Scaffold(
@@ -40,8 +43,9 @@ class EntryScreen extends StatelessWidget {
                             initialDate: entryCubit.selectedDate,
                             firstDate: DateTime(2015, 8),
                             lastDate: DateTime(2101));
-                        if (picked != null && picked != entryCubit.selectedDate) {
-                          
+                        if (picked != null &&
+                            picked != entryCubit.selectedDate) {
+                          entryCubit.datePicked(selectedDateNew: picked);
                           // setState(() {
                           //   selectedDate = picked;
                           // }
@@ -50,11 +54,13 @@ class EntryScreen extends StatelessWidget {
                         // Show date picker and update the state
                       },
                     ),
-                    const Expanded(
+                    Expanded(
                       child: TextField(
-                        // controller: context.read<EntryScreenBloc>().state.dateController,
+                        controller: TextEditingController(
+                            text: DateFormat('dd MMM yyyy')
+                                .format(entryCubit.selectedDate)),
                         readOnly: true,
-                        decoration: InputDecoration(labelText: 'Date'),
+                        decoration: const InputDecoration(labelText: 'Date'),
                       ),
                     ),
                   ],
@@ -64,15 +70,27 @@ class EntryScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.access_time),
-                      onPressed: () {
+                      onPressed: () async {
+                        TimeOfDay? pickedTime = await showTimePicker(
+                          initialTime: entryCubit.selectedTime,
+                          context: context,
+                        );
+                        if (pickedTime != entryCubit.selectedTime) {
+                          entryCubit.timePicked(selectedTimeNew: pickedTime);
+                          // setState(() {
+                          //   selectedDate = picked;
+                          // }
+                          // );
+                        }
                         // Show time picker and update the state
                       },
                     ),
-                    const Expanded(
+                    Expanded(
                       child: TextField(
-                        // controller: context.read<EntryScreenBloc>().state.timeController,
+                        controller: TextEditingController(
+                            text:DateFormat('h:mm a').format(entryCubit.selectedTime),),
                         readOnly: true,
-                        decoration: InputDecoration(labelText: 'Time'),
+                        decoration: const InputDecoration(labelText: 'Time'),
                       ),
                     ),
                   ],
