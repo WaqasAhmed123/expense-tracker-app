@@ -160,17 +160,13 @@ class EntryScreen extends StatelessWidget {
                 //   }).toList(),
                 // ),
                 DropdownButtonFormField(
-                  onChanged: (string) {
-                    string = "kfha";
+                  onChanged: (value) {
+                    entryCubit.transactionType = value;
+                    print(entryCubit.transactionType);
                   },
-                  style: const TextStyle(
-                    fontSize: 13.0,
-                    // fontFamily: "Poppins",
-                    color: Color(0xff0e0e0e),
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                   // value: "selectedOptions",
-                  // value: "selectedOptions",
+                  value: "Expense",
                   validator: (value) {
                     if (value == null) {
                       return ("Field can't be null");
@@ -192,13 +188,13 @@ class EntryScreen extends StatelessWidget {
                           borderSide: BorderSide.none),
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 16)),
-                  items: ["items", "ahflkk"]
+                  items: ["Expense", "Income"]
                       .map<DropdownMenuItem<String>>((String key) {
                     return DropdownMenuItem<String>(
                       value: key,
                       child: Text(
                         key,
-                        style: const TextStyle(color: Colors.black),
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     );
                   }).toList(),

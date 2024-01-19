@@ -12,6 +12,7 @@ class EntryCubit extends Cubit<EntryState> {
   TextEditingController amountController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
+  String? transactionType;
   datePicked({selectedDateNew}) {
     selectedDate = selectedDateNew;
     emit(DatePickedState());
