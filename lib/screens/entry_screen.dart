@@ -1,4 +1,5 @@
 import 'package:blocship/cubits/entry_cubit.dart';
+import 'package:blocship/screens/home_screen.dart';
 import 'package:blocship/states/entry_screen_state.dart';
 import 'package:blocship/widgets/textInput.dart';
 import 'package:flutter/material.dart';
@@ -155,7 +156,6 @@ class EntryScreen extends StatelessWidget {
                         print(entryCubit.transactionType);
                       },
                       style: Theme.of(context).textTheme.bodyMedium,
-                      // value: "selectedOptions",
                       value: "Expense",
                       validator: (value) {
                         if (value == null) {
@@ -165,13 +165,6 @@ class EntryScreen extends StatelessWidget {
                       },
                       decoration: InputDecoration(
                           filled: true,
-                          // hintText: "hintText",
-                          // hintStyle: TextStyle(
-                          //   fontSize: 13.0,
-                          //   // fontFamily: "Poppins",
-                          //   color: const Color(0xff0e0e0e).withOpacity(0.3),
-                          //   fontWeight: FontWeight.w500,
-                          // ),
                           fillColor: const Color(0xffffffff),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -198,30 +191,16 @@ class EntryScreen extends StatelessWidget {
                         readOnly: true,
                         showCursor: true,
                         hintText: "Amount"),
-                    // TextField(
-                    //   controller: amountController,
-                    //   readOnly: true,
-                    //   decoration: const InputDecoration(labelText: 'Amount'),
-                    // ),
                     NumericKeyboard(
                         onKeyboardTap: (value) =>
                             entryCubit.onKeyboardTap(value),
                         textStyle: const TextStyle(
                             fontSize: 20.0, color: Colors.black),
                         rightButtonFn: () {
-                          // if (text.isEmpty) return;
-                          // setState(() {
                           entryCubit.rightButtonFn();
-                          // entryCubit.amount = entryCubit.amount
-                          //     .substring(0, entryCubit.amount.length - 1);
-                          // });
                         },
                         rightButtonLongPressFn: () {
-                          // if (text.isEmpty) return;
-                          // setState(() {
                           entryCubit.rightButtonFn();
-                          // entryCubit.amount = '';
-                          // });
                         },
                         rightIcon: GestureDetector(
                           child: Container(
@@ -240,17 +219,9 @@ class EntryScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // const Icon(
-                        //   Icons.backspace,
-                        //   color: Colors.red,
-                        // ),
                         leftButtonFn: () {
                           print('left button clicked');
                         },
-                        // leftIcon: const Icon(
-                        //   Icons.check,
-                        //   color: Colors.red,
-                        // ),
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly),
                     Align(
                       alignment: Alignment.bottomRight,
@@ -258,17 +229,14 @@ class EntryScreen extends StatelessWidget {
                         // foregroundColor: Colors.blue,
                         backgroundColor: Colors.blue,
                         shape: const CircleBorder(),
-                        onPressed: () {},
-                        // child:
-                        // Container(
-                        //   height: 40,
-                        //   width: 40,
-                        //   decoration: const BoxDecoration(
-                        //     color: Colors.white,
-                        //     shape: BoxShape.circle,
-                        //     // border: Border.all(color: Colors.transparent),
-                        //     // borderRadius: BorderRadius.circular(12.0),
-                        //   ),
+                        onPressed: () {
+                          if ((entryCubit.formKey.currentState!.validate())) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const HomeScreen()));
+                          }
+                        },
                         child: const Center(
                           child: Icon(
                             Icons.check,
