@@ -7,7 +7,8 @@ Widget textInput(
     context,
     readOnly = false,
     showCursor,
-    contoller}) {
+    contoller,
+    onChanged}) {
   return Container(
     decoration: BoxDecoration(
       color: Colors.white,
@@ -19,6 +20,7 @@ Widget textInput(
       child: TextFormField(
         validator: (value) {
           if (value == null || value.isEmpty) {
+            print("the value of amount is $value");
             return ("Field can't be null");
           }
           return null;
@@ -34,6 +36,7 @@ Widget textInput(
         ),
         maxLength: maxLimit,
         readOnly: readOnly,
+        onChanged: onChanged,
       ),
     ),
   );

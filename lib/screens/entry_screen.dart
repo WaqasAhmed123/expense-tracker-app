@@ -46,16 +46,24 @@ class EntryScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     textInput(
-                        maxLimit: 30,
-                        height: 40.0,
-                        hintText: 'Title',
-                        context: context),
+                      maxLimit: 30,
+                      height: 40.0,
+                      hintText: 'Title',
+                      context: context,
+                      onChanged: (value) {
+                        entryCubit.updateButtonState();
+                      },
+                    ),
                     const SizedBox(height: 16),
                     textInput(
-                        maxLimit: 100,
-                        height: 90.0,
-                        hintText: "Description",
-                        context: context),
+                      maxLimit: 100,
+                      height: 90.0,
+                      hintText: "Description",
+                      context: context,
+                      onChanged: (value) {
+                        entryCubit.updateButtonState();
+                      },
+                    ),
                     const SizedBox(height: 16),
                     Row(
                       children: [
@@ -157,12 +165,13 @@ class EntryScreen extends StatelessWidget {
                       },
                       style: Theme.of(context).textTheme.bodyMedium,
                       value: "Expense",
-                      validator: (value) {
-                        if (value == null) {
-                          return ("Field can't be null");
-                        }
-                        return null;
-                      },
+                      // validator: (value) {
+                      //   if (value == null) {
+                      //     print("the value is $value");
+                      //     return ("Field can't be null");
+                      //   }
+                      //   return null;
+                      // },
                       decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xffffffff),
@@ -186,11 +195,15 @@ class EntryScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     textInput(
-                        context: context,
-                        contoller: amountController,
-                        readOnly: true,
-                        showCursor: true,
-                        hintText: "Amount"),
+                      context: context,
+                      contoller: amountController,
+                      readOnly: true,
+                      showCursor: true,
+                      hintText: "Amount",
+                      onChanged: (value) {
+                        entryCubit.updateButtonState();
+                      },
+                    ),
                     NumericKeyboard(
                         onKeyboardTap: (value) =>
                             entryCubit.onKeyboardTap(value),
@@ -227,16 +240,19 @@ class EntryScreen extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       child: FloatingActionButton(
                         // foregroundColor: Colors.blue,
-                        backgroundColor: Colors.blue,
+                        backgroundColor: entryCubit.isButtonEnabled
+                            ? Colors.blue
+                            : Colors.grey,
                         shape: const CircleBorder(),
-                        onPressed: () {
-                          if ((entryCubit.formKey.currentState!.validate())) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const HomeScreen()));
-                          }
-                        },
+                        onPressed: entryCubit.isButtonEnabled
+                            ? () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const HomeScreen()),
+                                );
+                              }
+                            : null,
                         child: const Center(
                           child: Icon(
                             Icons.check,

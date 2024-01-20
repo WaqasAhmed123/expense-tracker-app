@@ -6,7 +6,6 @@ class FirebaseService {
   final CollectionReference entriesCollection =
       FirebaseFirestore.instance.collection('Entries');
 
-  
   Future<void> addTransaction(EntriesModel transaction) async {
     try {
       await entriesCollection.add({
@@ -24,15 +23,15 @@ class FirebaseService {
   }
 
   Future<List<EntriesModel>> getTransactions() async {
-  try {
-    QuerySnapshot querySnapshot = await entriesCollection.get();
-    return querySnapshot.docs
-        .map((doc) => EntriesModel.fromMap(doc.data() as Map<String, dynamic>))
-        .toList();
-  } catch (e) {
-    print('Error getting transactions: $e');
-    return [];
+    try {
+      QuerySnapshot querySnapshot = await entriesCollection.get();
+      return querySnapshot.docs
+          .map(
+              (doc) => EntriesModel.fromMap(doc.data() as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      print('Error getting transactions: $e');
+      return [];
+    }
   }
-}
-
 }

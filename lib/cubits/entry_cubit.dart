@@ -15,7 +15,7 @@ class EntryCubit extends Cubit<EntryState> {
   String? transactionType;
   String amount = "";
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
+  bool isButtonEnabled = false;
   datePicked({selectedDateNew}) {
     selectedDate = selectedDateNew;
     emit(DatePickedState());
@@ -81,5 +81,12 @@ class EntryCubit extends Cubit<EntryState> {
       );
       emit(AmountSetState());
     }
+  }
+
+  void updateButtonState() {
+    // setState(() {
+    isButtonEnabled = formKey.currentState?.validate() ?? false;
+    emit(ButtonEnableState());
+    // });
   }
 }
