@@ -4,7 +4,7 @@ import 'package:blocship/widgets/textInput.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
+import 'package:onscreen_num_keyboard/onscreen_num_keyboard.dart';
 class EntryScreen extends StatelessWidget {
   const EntryScreen({super.key});
 
@@ -178,6 +178,7 @@ class EntryScreen extends StatelessWidget {
                   readOnly: true,
                   decoration: const InputDecoration(labelText: 'Amount'),
                 ),
+
               ],
             ),
           ),
