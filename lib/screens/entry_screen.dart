@@ -201,20 +201,22 @@ class EntryScreen extends StatelessWidget {
                   //   decoration: const InputDecoration(labelText: 'Amount'),
                   // ),
                   NumericKeyboard(
-                      onKeyboardTap: entryCubit.onKeyboardTap,
+                       onKeyboardTap: (value) => entryCubit.onKeyboardTap(value),
                       textStyle:
                           const TextStyle(fontSize: 20.0, color: Colors.black),
                       rightButtonFn: () {
                         // if (text.isEmpty) return;
                         // setState(() {
-                        entryCubit.amount = entryCubit.amount
-                            .substring(0, entryCubit.amount.length - 1);
+                        entryCubit.rightButtonFn();
+                        // entryCubit.amount = entryCubit.amount
+                        //     .substring(0, entryCubit.amount.length - 1);
                         // });
                       },
                       rightButtonLongPressFn: () {
                         // if (text.isEmpty) return;
                         // setState(() {
-                        entryCubit.amount = '';
+                        entryCubit.rightButtonFn();
+                        // entryCubit.amount = '';
                         // });
                       },
                       rightIcon: GestureDetector(
