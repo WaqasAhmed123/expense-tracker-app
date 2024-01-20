@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class EntriesModel {
   final String title;
   final String description;
@@ -14,4 +16,15 @@ class EntriesModel {
     required this.transactionType,
     required this.amount,
   });
+
+  factory EntriesModel.fromMap(Map<String, dynamic> map) {
+    return EntriesModel(
+      title: map['title'],
+      description: map['description'],
+      date: (map['date'] as Timestamp).toDate(),
+      time: map['time'],
+      transactionType: map['transactionType'],
+      amount: map['amount'].toDouble(),
+    );
+  }
 }
