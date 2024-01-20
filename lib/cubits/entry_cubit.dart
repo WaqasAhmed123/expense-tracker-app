@@ -14,6 +14,7 @@ class EntryCubit extends Cubit<EntryState> {
   TimeOfDay selectedTime = TimeOfDay.now();
   String? transactionType;
   String amount = "";
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   datePicked({selectedDateNew}) {
     selectedDate = selectedDateNew;
@@ -32,43 +33,42 @@ class EntryCubit extends Cubit<EntryState> {
   //   // });
   // }
   onKeyboardTap(String value) {
-  final int cursorPosition = amountController.selection.baseOffset;
+    final int cursorPosition = amountController.selection.baseOffset;
 
-  // Ensure cursor position is within bounds
-  if (cursorPosition >= 0 && cursorPosition <= amount.length) {
-    // Update the text with the new value at the cursor position
-    amount = amount.substring(0, cursorPosition) +
-        value +
-        amount.substring(cursorPosition);
+    // Ensure cursor position is within bounds
+    if (cursorPosition >= 0 && cursorPosition <= amount.length) {
+      // Update the text with the new value at the cursor position
+      amount = amount.substring(0, cursorPosition) +
+          value +
+          amount.substring(cursorPosition);
 
-    // Update the controller with the new TextEditingValue
-    amountController.value = TextEditingValue(
-      text: amount,
-      selection: TextSelection.collapsed(offset: cursorPosition + 1),
-    );
-  } else if (cursorPosition == -1) {
-    // If cursor is at the start, append the value
-    amount = value + amount;
+      // Update the controller with the new TextEditingValue
+      amountController.value = TextEditingValue(
+        text: amount,
+        selection: TextSelection.collapsed(offset: cursorPosition + 1),
+      );
+    } else if (cursorPosition == -1) {
+      // If cursor is at the start, append the value
+      amount = value + amount;
 
-    // Update the controller with the new TextEditingValue
-    amountController.value = TextEditingValue(
-      text: amount,
-      selection: TextSelection.collapsed(offset: amount.length),
-    );
-  } else {
-    // If cursor is at the end, append the value
-    amount += value;
+      // Update the controller with the new TextEditingValue
+      amountController.value = TextEditingValue(
+        text: amount,
+        selection: TextSelection.collapsed(offset: amount.length),
+      );
+    } else {
+      // If cursor is at the end, append the value
+      amount += value;
 
-    // Update the controller with the new TextEditingValue
-    amountController.value = TextEditingValue(
-      text: amount,
-      selection: TextSelection.collapsed(offset: amount.length),
-    );
+      // Update the controller with the new TextEditingValue
+      amountController.value = TextEditingValue(
+        text: amount,
+        selection: TextSelection.collapsed(offset: amount.length),
+      );
+    }
+
+    emit(AmountSetState());
   }
-
-  emit(AmountSetState());
-}
-
 
   rightButtonFn() {
     final int cursorPosition = amountController.selection.baseOffset;

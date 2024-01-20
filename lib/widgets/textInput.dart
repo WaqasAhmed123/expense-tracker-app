@@ -17,6 +17,12 @@ Widget textInput(
     height: height,
     child: Center(
       child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return ("Field can't be null");
+          }
+          return null;
+        },
         showCursor: showCursor,
         style: Theme.of(context).textTheme.bodyMedium,
         controller: contoller,
