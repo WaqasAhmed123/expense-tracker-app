@@ -39,6 +39,7 @@ dependencies:
   intl: ^0.19.0
   onscreen_num_keyboard: ^1.0.4
   firebase_core: ^2.24.2
+  cloud_firestore: ^4.14.0
 
 dev_dependencies:
   flutter_test:
