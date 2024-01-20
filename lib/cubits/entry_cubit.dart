@@ -13,6 +13,8 @@ class EntryCubit extends Cubit<EntryState> {
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   String? transactionType;
+  String amount = "";
+
   datePicked({selectedDateNew}) {
     selectedDate = selectedDateNew;
     emit(DatePickedState());
@@ -21,5 +23,36 @@ class EntryCubit extends Cubit<EntryState> {
   timePicked({selectedTimeNew}) {
     selectedTime = selectedTimeNew;
     emit(TimePickedState());
+  }
+
+  // onKeyboardTap(String value) {
+  //   // setState(() {
+  //   amount = amount + value;
+  //   emit(AmountSetState());
+  //   // });
+  // }
+ onKeyboardTap(String value) {
+    final int cursorPosition = amountController.selection.baseOffset;
+    amount = amount.substring(0, cursorPosition) +
+        value +
+        amount.substring(cursorPosition);
+    amountController.value = amountController.value.copyWith(
+      text: amount,
+      selection: TextSelection.collapsed(offset: cursorPosition + 1),
+    );
+    emit(AmountSetState());
+  }
+  
+  rightButtonFn() {
+    final int cursorPosition = amountController.selection.baseOffset;
+    if (cursorPosition > 0) {
+      amount = amount.substring(0, cursorPosition - 1) +
+          amount.substring(cursorPosition);
+      amountController.value = amountController.value.copyWith(
+        text: amount,
+        selection: TextSelection.collapsed(offset: cursorPosition - 1),
+      );
+      emit(AmountSetState());
+    }
   }
 }

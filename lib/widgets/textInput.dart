@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 Widget textInput(
-    {maxLimit, height, hintText, context, readOnly = false, contoller}) {
+    {maxLimit,
+    height,
+    hintText,
+    context,
+    readOnly = false,
+    showCursor,
+    contoller}) {
   return Container(
     decoration: BoxDecoration(
       color: Colors.white,
@@ -11,6 +17,7 @@ Widget textInput(
     height: height,
     child: Center(
       child: TextFormField(
+        showCursor: showCursor,
         style: Theme.of(context).textTheme.bodyMedium,
         controller: contoller,
         decoration: InputDecoration(
