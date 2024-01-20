@@ -201,7 +201,7 @@ class EntryScreen extends StatelessWidget {
                   //   decoration: const InputDecoration(labelText: 'Amount'),
                   // ),
                   NumericKeyboard(
-                       onKeyboardTap: (value) => entryCubit.onKeyboardTap(value),
+                      onKeyboardTap: (value) => entryCubit.onKeyboardTap(value),
                       textStyle:
                           const TextStyle(fontSize: 20.0, color: Colors.black),
                       rightButtonFn: () {
@@ -247,7 +247,32 @@ class EntryScreen extends StatelessWidget {
                       //   Icons.check,
                       //   color: Colors.red,
                       // ),
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly)
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: FloatingActionButton(
+                      // foregroundColor: Colors.blue,
+                      backgroundColor: Colors.blue,
+                      shape: const CircleBorder(),
+                      onPressed: () {},
+                      // child:
+                      // Container(
+                      //   height: 40,
+                      //   width: 40,
+                      //   decoration: const BoxDecoration(
+                      //     color: Colors.white,
+                      //     shape: BoxShape.circle,
+                      //     // border: Border.all(color: Colors.transparent),
+                      //     // borderRadius: BorderRadius.circular(12.0),
+                      //   ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.check,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
