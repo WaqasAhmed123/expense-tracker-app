@@ -5,7 +5,7 @@ class EntriesModel {
   final String description;
   final DateTime date;
   final String time;
-  final String transactionType;
+  final String entryType;
   final double amount;
 
   EntriesModel({
@@ -13,7 +13,7 @@ class EntriesModel {
     required this.description,
     required this.date,
     required this.time,
-    required this.transactionType,
+    required this.entryType,
     required this.amount,
   });
 
@@ -23,7 +23,7 @@ class EntriesModel {
       description: map['description'],
       date: (map['date'] as Timestamp).toDate(),
       time: map['time'],
-      transactionType: map['transactionType'],
+      entryType: map['entryType'],
       amount: map['amount'].toDouble(),
     );
   }
