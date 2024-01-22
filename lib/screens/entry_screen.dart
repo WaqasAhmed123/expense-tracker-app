@@ -1,5 +1,4 @@
 import 'package:blocship/cubits/entry_cubit.dart';
-import 'package:blocship/screens/home_screen.dart';
 import 'package:blocship/states/entry_screen_state.dart';
 import 'package:blocship/widgets/textInput.dart';
 import 'package:flutter/material.dart';
@@ -200,13 +199,16 @@ class EntryScreen extends StatelessWidget {
                       readOnly: true,
                       showCursor: true,
                       hintText: "Amount",
-                      onChanged: (value) {
-                        entryCubit.updateButtonState();
-                      },
+                      // onChanged: (value) {
+                      // entryCubit.updateButtonState();
+                      //   print(value);
+                      // },
                     ),
                     NumericKeyboard(
-                        onKeyboardTap: (value) =>
-                            entryCubit.onKeyboardTap(value),
+                        onKeyboardTap: (value) {
+                          entryCubit.onKeyboardTap(value);
+                          entryCubit.updateButtonState();
+                        },
                         textStyle: const TextStyle(
                             fontSize: 20.0, color: Colors.black),
                         rightButtonFn: () {
@@ -246,6 +248,12 @@ class EntryScreen extends StatelessWidget {
                         shape: const CircleBorder(),
                         onPressed: entryCubit.isButtonEnabled
                             ? () {
+                                print("object ${dateController.text}");
+                                print("object ${timeController.text}");
+                                print(
+                                    "title ${entryCubit.titleController.text}");
+                                print(
+                                    "description ${entryCubit.descriptionController.text}");
                                 entryCubit.sendEntry(
                                     date: dateController.text,
                                     time: timeController.text,

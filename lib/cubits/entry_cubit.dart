@@ -94,6 +94,7 @@ class EntryCubit extends Cubit<EntryState> {
   }
 
   void sendEntry({date, time, entryType, amount}) {
+    
     EntryModel entry = EntryModel(
         title: titleController.text,
         description: descriptionController.text,
