@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EntryModel {
@@ -7,7 +9,7 @@ class EntryModel {
   final String date;
   final String time;
   final String entryType;
-  final double amount;
+  final dynamic amount;
 
   EntryModel({
     required this.title,
@@ -25,7 +27,7 @@ class EntryModel {
       date: map['date'],
       time: map['time'],
       entryType: map['entryType'],
-      amount: map['amount'].toDouble(),
+      amount: map['amount'],
     );
   }
 }

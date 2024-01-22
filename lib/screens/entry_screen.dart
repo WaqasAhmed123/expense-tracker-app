@@ -49,7 +49,7 @@ class EntryScreen extends StatelessWidget {
                       height: 40.0,
                       hintText: 'Title',
                       context: context,
-                      contoller: entryCubit.timeController,
+                      contoller: entryCubit.titleController,
                       onChanged: (value) {
                         entryCubit.updateButtonState();
                         // entryCubit.titleController.text = value;
@@ -163,7 +163,7 @@ class EntryScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     DropdownButtonFormField(
                       onChanged: (value) {
-                        entryCubit.entryType = value;
+                        entryCubit.entryType = value!;
                         print(entryCubit.entryType);
                       },
                       style: Theme.of(context).textTheme.bodyMedium,
@@ -251,13 +251,14 @@ class EntryScreen extends StatelessWidget {
                             : Colors.grey,
                         shape: const CircleBorder(),
                         onPressed: entryCubit.isButtonEnabled
-                            ? () {
-                                print("object ${dateController.text}");
-                                print("object ${timeController.text}");
-                                print(
-                                    "title ${entryCubit.titleController.text}");
-                                print(
-                                    "description ${entryCubit.descriptionController.text}");
+                            ? () async {
+                                // print("object ${dateController.text}");
+                                // print("object ${amountController.text}");
+                                // print("object ${timeController.text}");
+                                // print(
+                                //     "title ${entryCubit.titleController.text}");
+                                // print(
+                                //     "description ${entryCubit.descriptionController.text}");
                                 entryCubit.sendEntry(
                                     date: dateController.text,
                                     time: timeController.text,

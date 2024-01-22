@@ -10,15 +10,16 @@ class EntryCubit extends Cubit<EntryState> {
 //  EntryCubit= BlocProvider.of(context)
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  TextEditingController? dateController;
-  TextEditingController? timeController;
+  TextEditingController dateController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
-  String? entryType;
+  String entryType = "Expense";
   String amount = "";
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isButtonEnabled = false;
+  
   datePicked({selectedDateNew}) {
     selectedDate = selectedDateNew;
     emit(DatePickedState());
@@ -93,15 +94,21 @@ class EntryCubit extends Cubit<EntryState> {
     // });
   }
 
-  void sendEntry({date, time, entryType, amount}) {
-    
+  void sendEntry({date, time, amount}) async {
+    print("date $date");
+    print("time $time");
+    print("entry $entryType");
+    print("amount $amount");
+    print("title ${titleController.text}");
+    print("description ${descriptionController.text}");
+
     EntryModel entry = EntryModel(
         title: titleController.text,
         description: descriptionController.text,
-        date: date,
-        time: time,
+        date: date ?? "", // Using the null-aware operator to handle null values
+        time: time ?? "",
         entryType: entryType,
         amount: amount);
-    FirebaseService.addEntry(entry);
+    await FirebaseService.addEntry(entry);
   }
 }
