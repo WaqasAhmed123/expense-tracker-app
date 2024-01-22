@@ -49,8 +49,10 @@ class EntryScreen extends StatelessWidget {
                       height: 40.0,
                       hintText: 'Title',
                       context: context,
+                      contoller: entryCubit.timeController,
                       onChanged: (value) {
                         entryCubit.updateButtonState();
+                        // entryCubit.titleController.text = value;
                       },
                     ),
                     const SizedBox(height: 16),
@@ -59,8 +61,10 @@ class EntryScreen extends StatelessWidget {
                       height: 90.0,
                       hintText: "Description",
                       context: context,
+                      contoller: entryCubit.descriptionController,
                       onChanged: (value) {
                         entryCubit.updateButtonState();
+                        // entryCubit.descriptionController.text = value;
                       },
                     ),
                     const SizedBox(height: 16),
