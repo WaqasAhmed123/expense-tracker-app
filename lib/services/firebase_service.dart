@@ -22,7 +22,7 @@ class FirebaseService {
     }
   }
 
-  Future<List<EntryModel>> getEntries() async {
+ static Future<List<EntryModel>> getEntries() async {
     try {
       QuerySnapshot querySnapshot = await entriesCollection.get();
       return querySnapshot.docs
