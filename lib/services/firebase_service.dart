@@ -3,10 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/entries_model.dart';
 
 class FirebaseService {
-  final CollectionReference entriesCollection =
+  static final CollectionReference entriesCollection =
       FirebaseFirestore.instance.collection('Entries');
 
-  Future<void> addEntry(EntriesModel entry) async {
+  static addEntry(EntryModel entry) async {
     try {
       await entriesCollection.add({
         'title': entry.title,
@@ -22,12 +22,11 @@ class FirebaseService {
     }
   }
 
-  Future<List<EntriesModel>> getEntries() async {
+  Future<List<EntryModel>> getEntries() async {
     try {
       QuerySnapshot querySnapshot = await entriesCollection.get();
       return querySnapshot.docs
-          .map(
-              (doc) => EntriesModel.fromMap(doc.data() as Map<String, dynamic>))
+          .map((doc) => EntryModel.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
     } catch (e) {
       print('Error getting entries: $e');

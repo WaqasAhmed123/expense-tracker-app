@@ -1,6 +1,9 @@
+import 'package:blocship/services/firebase_service.dart';
 import 'package:blocship/states/entry_screen_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../models/entries_model.dart';
 
 class EntryCubit extends Cubit<EntryState> {
   EntryCubit() : super(EntryInitialState());
@@ -12,7 +15,7 @@ class EntryCubit extends Cubit<EntryState> {
   TextEditingController amountController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
-  String? transactionType;
+  String? entryType;
   String amount = "";
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isButtonEnabled = false;
@@ -88,5 +91,16 @@ class EntryCubit extends Cubit<EntryState> {
     isButtonEnabled = formKey.currentState?.validate() ?? false;
     emit(ButtonEnableState());
     // });
+  }
+
+  void sendEntry({date, time, entryType, amount}) {
+    EntryModel entry = EntryModel(
+        title: titleController.text,
+        description: descriptionController.text,
+        date: date,
+        time: time,
+        entryType: entryType,
+        amount: amount);
+    FirebaseService.addEntry(entry);
   }
 }

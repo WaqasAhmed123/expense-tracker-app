@@ -160,8 +160,8 @@ class EntryScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     DropdownButtonFormField(
                       onChanged: (value) {
-                        entryCubit.transactionType = value;
-                        print(entryCubit.transactionType);
+                        entryCubit.entryType = value;
+                        print(entryCubit.entryType);
                       },
                       style: Theme.of(context).textTheme.bodyMedium,
                       value: "Expense",
@@ -246,11 +246,16 @@ class EntryScreen extends StatelessWidget {
                         shape: const CircleBorder(),
                         onPressed: entryCubit.isButtonEnabled
                             ? () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const HomeScreen()),
-                                );
+                                entryCubit.sendEntry(
+                                    date: dateController.text,
+                                    time: timeController.text,
+                                    amount: amountController.text);
+
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (context) => const HomeScreen()),
+                                // );
                               }
                             : null,
                         child: const Center(

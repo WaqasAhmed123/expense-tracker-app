@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class EntriesModel {
+class EntryModel {
   final String title;
   final String description;
   final DateTime date;
@@ -8,7 +8,7 @@ class EntriesModel {
   final String entryType;
   final double amount;
 
-  EntriesModel({
+  EntryModel({
     required this.title,
     required this.description,
     required this.date,
@@ -17,8 +17,8 @@ class EntriesModel {
     required this.amount,
   });
 
-  factory EntriesModel.fromMap(Map<String, dynamic> map) {
-    return EntriesModel(
+  factory EntryModel.fromMap(Map<String, dynamic> map) {
+    return EntryModel(
       title: map['title'],
       description: map['description'],
       date: (map['date'] as Timestamp).toDate(),
