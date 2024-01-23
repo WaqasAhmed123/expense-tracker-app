@@ -14,7 +14,7 @@ class FirebaseService {
         'date': entry.date,
         'time': entry.time,
         'entryType': entry.entryType,
-        'amount': entry.amount,
+        'amount': double.parse(entry.amount),
       });
       print('entry added successfully!');
     } catch (e) {
@@ -22,7 +22,7 @@ class FirebaseService {
     }
   }
 
- static Future<List<EntryModel>> getEntries() async {
+  static Future<List<EntryModel>> getEntries() async {
     try {
       QuerySnapshot querySnapshot = await entriesCollection.get();
       return querySnapshot.docs
