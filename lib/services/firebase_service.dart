@@ -1,11 +1,9 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/entries_model.dart';
 
 class FirebaseService {
   static final CollectionReference entriesCollection =
       FirebaseFirestore.instance.collection('Entries');
-      FirebaseDatabase database = FirebaseDatabase.instance;
 
   static addEntry(EntryModel entry) async {
     try {
