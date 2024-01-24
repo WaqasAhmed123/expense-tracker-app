@@ -9,9 +9,8 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    List<_PieData> pieData = 
-    [_PieData("Income", 660)];
-    [_PieData("Expense", 660)];
+    List<_PieData> pieData = [_PieData("Income", 660)];
+    [_PieData("Expense", 66)];
     return Scaffold(
         appBar: AppBar(
           title: const Text('Doughnut Chart Screen'),
@@ -19,8 +18,8 @@ class HomeScreen extends StatelessWidget {
         body: SfCircularChart(
             title: const ChartTitle(text: 'Sales by sales person'),
             legend: const Legend(isVisible: true),
-            series: <PieSeries<_PieData, String>>[
-              PieSeries<_PieData, String>(
+            series: <DoughnutSeries<_PieData, String>>[
+              DoughnutSeries<_PieData, String>(
                   explode: true,
                   explodeIndex: 0,
                   dataSource: pieData,
