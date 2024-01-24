@@ -1,9 +1,6 @@
-import 'dart:math' as Math;
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,22 +9,19 @@ class HomeScreen extends StatelessWidget {
     List<_PieData> pieData = [_PieData("Income", 660)];
     [_PieData("Expense", 66)];
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Doughnut Chart Screen'),
-        ),
         body: SfCircularChart(
             title: const ChartTitle(text: 'Sales by sales person'),
             legend: const Legend(isVisible: true),
             series: <DoughnutSeries<_PieData, String>>[
-              DoughnutSeries<_PieData, String>(
-                  explode: true,
-                  explodeIndex: 0,
-                  dataSource: pieData,
-                  xValueMapper: (_PieData data, _) => data.xData,
-                  yValueMapper: (_PieData data, _) => data.yData,
-                  dataLabelMapper: (_PieData data, _) => data.text,
-                  dataLabelSettings: const DataLabelSettings(isVisible: true)),
-            ])
+          DoughnutSeries<_PieData, String>(
+              explode: true,
+              explodeIndex: 0,
+              dataSource: pieData,
+              xValueMapper: (_PieData data, _) => data.xData,
+              yValueMapper: (_PieData data, _) => data.yData,
+              dataLabelMapper: (_PieData data, _) => data.text,
+              dataLabelSettings: const DataLabelSettings(isVisible: true)),
+        ])
 
         // Column(
         //   crossAxisAlignment: CrossAxisAlignment.stretch,

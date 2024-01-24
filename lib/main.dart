@@ -45,7 +45,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: const EntryScreen(),
-        home: const HomeScreen(),
+        // home: const HomeScreen(),
+        home: const EntryScreen(),
       ),
     );
   }
