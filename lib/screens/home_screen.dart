@@ -1,6 +1,9 @@
+import 'package:blocship/cubits/home_cubit.dart';
 import 'package:blocship/screens/entry_screen.dart';
+import 'package:blocship/states/home_screen_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -39,22 +42,44 @@ class HomeScreen extends StatelessWidget {
                         ),
                         label: const Text("Add")),
                   ),
-                  SfCircularChart(
-                      // title: const ChartTitle(text: 'Sales by sales person'),
-                      // legend: const Legend(isVisible: true),
-                      series: <DoughnutSeries<_PieData, String>>[
-                        DoughnutSeries<_PieData, String>(
-                            explode: true,
-                            explodeIndex: 0,
-                            radius:
-                                "${MediaQuery.sizeOf(context).height * 0.1}",
-                            dataSource: pieData,
-                            xValueMapper: (_PieData data, _) => data.xData,
-                            yValueMapper: (_PieData data, _) => data.yData,
-                            dataLabelMapper: (_PieData data, _) => data.text,
-                            dataLabelSettings:
-                                const DataLabelSettings(isVisible: true)),
-                      ]),
+                  BlocBuilder<HomeCubit, HomeState>(
+                    builder: (context, state) {
+                      if (state is HomeLoadingState) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (state is HomeLoadedState) {
+                        // Use state.totals to populate your UI
+                        return SfCircularChart(
+                            // title: const ChartTitle(text: 'Sales by sales person'),
+                            // legend: const Legend(isVisible: true),
+                            series: <DoughnutSeries<_PieData, String>>[
+                              DoughnutSeries<_PieData, String>(
+                                  explode: true,
+                                  explodeIndex: 0,
+                                  radius:
+                                      "${MediaQuery.sizeOf(context).height * 0.1}",
+                                  dataSource: pieData,
+                                  xValueMapper: (_PieData data, _) =>
+                                      data.xData,
+                                  yValueMapper: (_PieData data, _) =>
+                                      data.yData,
+                                  dataLabelMapper: (_PieData data, _) =>
+                                      data.text,
+                                  dataLabelSettings:
+                                      const DataLabelSettings(isVisible: true)),
+                            ]);
+                      } else if (state is HomeErrorState) {
+                        return Center(
+                          child: Text('Error: ${state.errorMessage}'),
+                        );
+                      } else {
+                        return const Center(
+                          child: Text('Unknown state'),
+                        );
+                      }
+                    },
+                  ),
                 ],
               ),
             )
