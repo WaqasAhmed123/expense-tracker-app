@@ -1,3 +1,4 @@
+import 'package:blocship/screens/entry_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -9,19 +10,48 @@ class HomeScreen extends StatelessWidget {
     List<_PieData> pieData = [_PieData("Income", 660)];
     [_PieData("Expense", 66)];
     return Scaffold(
-        body: SfCircularChart(
-            title: const ChartTitle(text: 'Sales by sales person'),
-            legend: const Legend(isVisible: true),
-            series: <DoughnutSeries<_PieData, String>>[
-          DoughnutSeries<_PieData, String>(
-              explode: true,
-              explodeIndex: 0,
-              dataSource: pieData,
-              xValueMapper: (_PieData data, _) => data.xData,
-              yValueMapper: (_PieData data, _) => data.yData,
-              dataLabelMapper: (_PieData data, _) => data.text,
-              dataLabelSettings: const DataLabelSettings(isVisible: true)),
-        ])
+        body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: ElevatedButton.icon(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const EntryScreen()),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                  label: const Text("Add")),
+            ),
+            SfCircularChart(
+                title: const ChartTitle(text: 'Sales by sales person'),
+                legend: const Legend(isVisible: true),
+                series: <DoughnutSeries<_PieData, String>>[
+                  DoughnutSeries<_PieData, String>(
+                      explode: true,
+                      explodeIndex: 0,
+                      dataSource: pieData,
+                      xValueMapper: (_PieData data, _) => data.xData,
+                      yValueMapper: (_PieData data, _) => data.yData,
+                      dataLabelMapper: (_PieData data, _) => data.text,
+                      dataLabelSettings:
+                          const DataLabelSettings(isVisible: true)),
+                ]),
+          ],
+        ),
+      ),
+    )
 
         // Column(
         //   crossAxisAlignment: CrossAxisAlignment.stretch,

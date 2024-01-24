@@ -33,24 +33,38 @@ class FirebaseService {
     }
   }
 
-  static Future<double> getTotalAmountByEntryType(String entryType) async {
-    try {
-      QuerySnapshot querySnapshot = await entriesCollection
-          .where('entryType', isEqualTo: entryType)
-          .get();
+  static Future<Map<String, double>> getTotalAmounts() async {
+  try {
+    QuerySnapshot querySnapshot = await entriesCollection.get();
 
-      List<EntryModel> entryModels = querySnapshot.docs
-          .map((doc) => EntryModel.fromMap(doc.data() as Map<String, dynamic>))
-          .toList();
+    List<EntryModel> entryModels = querySnapshot.docs
+        .map((doc) => EntryModel.fromMap(doc.data() as Map<String, dynamic>))
+        .toList();
 
-      double totalAmount = entryModels
-          .map((entry) => int.parse(entry.amount))
-          .fold(0.0, (sum, amount) => sum + amount);
-      print("The amount is $totalAmount");
-      return totalAmount;
-    } catch (e) {
-      print('Error getting total amount: $e');
-      return 0.0;
-    }
+    double totalIncome = entryModels
+        .where((entry) => entry.entryType == 'Income')
+        .map((entry) => entry.amount)
+        .fold(0.0, (sum, amount) => sum + amount);
+
+    double totalExpense = entryModels
+        .where((entry) => entry.entryType == 'Expense')
+        .map((entry) => entry.amount)
+        .fold(0.0, (sum, amount) => sum + amount);
+
+    print("Total Income: $totalIncome");
+    print("Total Expense: $totalExpense");
+
+    return {
+      'Income': totalIncome,
+      'Expense': totalExpense,
+    };
+  } catch (e) {
+    print('Error getting total amounts: $e');
+    return {
+      'Income': 0.0,
+      'Expense': 0.0,
+    };
   }
+}
+
 }

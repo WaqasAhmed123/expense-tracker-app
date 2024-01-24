@@ -14,7 +14,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseService.getTotalAmountByEntryType("expense");
+  await FirebaseService.getTotalAmounts();
   runApp(const MyApp());
 }
 
@@ -45,8 +45,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: const EntryScreen(),
-        // home: const HomeScreen(),
-        home: const EntryScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
