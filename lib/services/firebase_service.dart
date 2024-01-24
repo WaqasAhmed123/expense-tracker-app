@@ -33,14 +33,21 @@ class FirebaseService {
     }
   }
 
-   static Future<double> _getTotalAmountByEntryType(String entryType) async {
+  static Future<double> getTotalAmountByEntryType(String entryType) async {
     try {
-      QuerySnapshot querySnapshot =
-          await entriesCollection.where('entryType', isEqualTo: entryType).get();
+      QuerySnapshot querySnapshot = await entriesCollection
+          .where('entryType', isEqualTo: entryType)
+          .get();
 
-      return querySnapshot.docs
-          .map((doc) => EntryModel.fromMap(doc.data() as Map<String, dynamic>).amount)
+      List<EntryModel> entryModels = querySnapshot.docs
+          .map((doc) => EntryModel.fromMap(doc.data() as Map<String, dynamic>))
+          .toList();
+
+      double totalAmount = entryModels
+          .map((entry) => int.parse(entry.amount))
           .fold(0.0, (sum, amount) => sum + amount);
+      print("The amount is $totalAmount");
+      return totalAmount;
     } catch (e) {
       print('Error getting total amount: $e');
       return 0.0;
