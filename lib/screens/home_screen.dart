@@ -15,39 +15,49 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: ElevatedButton.icon(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.3,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: ElevatedButton.icon(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blue),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EntryScreen()),
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                        label: const Text("Add")),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const EntryScreen()),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                  label: const Text("Add")),
-            ),
-            SfCircularChart(
-                title: const ChartTitle(text: 'Sales by sales person'),
-                legend: const Legend(isVisible: true),
-                series: <DoughnutSeries<_PieData, String>>[
-                  DoughnutSeries<_PieData, String>(
-                      explode: true,
-                      explodeIndex: 0,
-                      dataSource: pieData,
-                      xValueMapper: (_PieData data, _) => data.xData,
-                      yValueMapper: (_PieData data, _) => data.yData,
-                      dataLabelMapper: (_PieData data, _) => data.text,
-                      dataLabelSettings:
-                          const DataLabelSettings(isVisible: true)),
-                ]),
+                  SfCircularChart(
+                      // title: const ChartTitle(text: 'Sales by sales person'),
+                      // legend: const Legend(isVisible: true),
+                      series: <DoughnutSeries<_PieData, String>>[
+                        DoughnutSeries<_PieData, String>(
+                            explode: true,
+                            explodeIndex: 0,
+                            radius:
+                                "${MediaQuery.sizeOf(context).height * 0.1}",
+                            dataSource: pieData,
+                            xValueMapper: (_PieData data, _) => data.xData,
+                            yValueMapper: (_PieData data, _) => data.yData,
+                            dataLabelMapper: (_PieData data, _) => data.text,
+                            dataLabelSettings:
+                                const DataLabelSettings(isVisible: true)),
+                      ]),
+                ],
+              ),
+            )
           ],
         ),
       ),

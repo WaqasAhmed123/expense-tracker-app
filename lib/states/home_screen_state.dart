@@ -1,3 +1,17 @@
-abstract class HomeState{}
+abstract class HomeState {}
 
-class HomeInitialState extends HomeState{}
+class HomeInitialState extends HomeState {}
+
+class HomeLoadingState extends HomeState {}
+
+class HomeLoadedState extends HomeState {
+  final Map<String, double> totals;
+
+  HomeLoadedState(this.totals);
+}
+
+class HomeErrorState extends HomeState {
+  final String errorMessage;
+
+  HomeErrorState(this.errorMessage);
+}
