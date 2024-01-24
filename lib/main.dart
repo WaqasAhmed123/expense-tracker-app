@@ -14,7 +14,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseService.getTotalAmounts();
   runApp(const MyApp());
 }
 
@@ -26,8 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
-        BlocProvider<EntryCubit>(create: (context) => EntryCubit()),
+        BlocProvider<HomeCubit>(create: (context) => HomeCubit(),lazy: false,),
+        BlocProvider<EntryCubit>(create: (context) => EntryCubit(),lazy: false,),
         // Add more providers if needed
       ],
       child: MaterialApp(
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: const EntryScreen(),
-        home: const HomeScreen(),
+        home: HomeScreen(),
       ),
     );
   }

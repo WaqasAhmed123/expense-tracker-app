@@ -6,7 +6,7 @@ import '../services/firebase_service.dart';
 class HomeCubit extends Cubit<HomeState>{
 HomeCubit() : super(HomeInitialState());
 
-void loadTotalAmounts() async {
+  void loadTotalAmounts() async {
     try {
       Map<String, double> totals = await FirebaseService.getTotalAmounts();
       emit(HomeLoadedState(totals));
@@ -15,4 +15,5 @@ void loadTotalAmounts() async {
     }
   }
 }
+
 
