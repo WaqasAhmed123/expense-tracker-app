@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -62,15 +62,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
                       print("rebuilded");
-                      HomeCubit homeCubit = HomeCubit();
+                      // HomeCubit homeCubit = HomeCubit();
                       homeCubit.loadTotalAmounts();
                       if (state is HomeLoadingState) {
+                        print("checked first state");
                         return const Center(
                           child: CircularProgressIndicator(
                             color: Colors.blue,
                           ),
                         );
                       } else if (state is HomeLoadedState) {
+                        print("checked second state");
+
                         // Use state.totals to populate your UI
                         List<Map<String, dynamic>> pieData = [
                           {
@@ -83,25 +86,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ];
 
-                        return Expanded(
-                          child: SfCircularChart(
-                            series: <DoughnutSeries<Map<String, dynamic>,
-                                String>>[
-                              DoughnutSeries<Map<String, dynamic>, String>(
-                                explode: true,
-                                explodeIndex: 0,
-                                radius:
-                                    "${MediaQuery.of(context).size.height * 0.1}",
-                                dataSource: pieData,
-                                xValueMapper: (data, _) => data['xData'],
-                                yValueMapper: (data, _) => data['yData'],
-                                dataLabelMapper: (data, _) =>
-                                    '${data['xData']}: ${data['yData']}',
-                                dataLabelSettings:
-                                    const DataLabelSettings(isVisible: true),
-                              ),
-                            ],
-                          ),
+                        return SfCircularChart(
+                          series: <DoughnutSeries<Map<String, dynamic>,
+                              String>>[
+                            DoughnutSeries<Map<String, dynamic>, String>(
+                              explode: true,
+                              explodeIndex: 0,
+                              radius:
+                                  "${MediaQuery.of(context).size.height * 0.1}",
+                              dataSource: pieData,
+                              xValueMapper: (data, _) => data['xData'],
+                              yValueMapper: (data, _) => data['yData'],
+                              dataLabelMapper: (data, _) =>
+                                  '${data['xData']}: ${data['yData']}',
+                              dataLabelSettings:
+                                  const DataLabelSettings(isVisible: true),
+                            ),
+                          ],
                         );
                       } else if (state is HomeErrorState) {
                         return Center(
