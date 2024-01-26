@@ -1,6 +1,7 @@
 import 'package:blocship/cubits/home_cubit.dart';
 import 'package:blocship/screens/entry_screen.dart';
 import 'package:blocship/states/home_screen_state.dart';
+import 'package:blocship/widgets/chart_rep.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,25 +82,46 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ];
 
-                        return Expanded(
-                          child: SfCircularChart(
-                            series: <DoughnutSeries<Map<String, dynamic>,
-                                String>>[
-                              DoughnutSeries<Map<String, dynamic>, String>(
-                                explode: true,
-                                explodeIndex: 0,
-                                radius:
-                                    "${MediaQuery.of(context).size.height * 0.1}",
-                                dataSource: pieData,
-                                xValueMapper: (data, _) => data['xData'],
-                                yValueMapper: (data, _) => data['yData'],
-                                dataLabelMapper: (data, _) =>
-                                    '${data['xData']}: ${data['yData']}',
-                                dataLabelSettings:
-                                    const DataLabelSettings(isVisible: true),
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.5, //
+                              child: SfCircularChart(
+                                centerY: '80',
+                                margin: EdgeInsets.zero,
+                                // borderWidth: 10,
+                                series: <DoughnutSeries<Map<String, dynamic>,
+                                    String>>[
+                                  DoughnutSeries<Map<String, dynamic>, String>(
+                                    // explode: true,
+                                    // explodeIndex: 0,
+
+                                    strokeWidth: 5,
+                                    radius:
+                                        "${MediaQuery.of(context).size.height * 0.1}",
+                                    dataSource: pieData,
+                                    xValueMapper: (data, _) => data['xData'],
+                                    yValueMapper: (data, _) => data['yData'],
+                                    // dataLabelMapper: (data, _) =>
+                                    //     '${data['xData']}: ${data['yData']}',
+                                    dataLabelSettings: const DataLabelSettings(
+                                        isVisible: false),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                            // Column(
+                            //   children: [
+                            //     chartRep(color: Colors.pink, text: "Expnese"),
+                            //     const SizedBox(
+                            //       height: 10,
+                            //     ),
+                            //     chartRep(color: Colors.green, text: "Income"),
+                            //   ],
+                            // )
+                          ],
                         );
                       } else if (state is HomeErrorState) {
                         return Center(
