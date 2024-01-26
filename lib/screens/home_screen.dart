@@ -16,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // final HomeCubit homeCubit = HomeCubit();
 
-
   @override
   Widget build(BuildContext context) {
     HomeCubit homeCubit = BlocProvider.of(context);
@@ -82,23 +81,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ];
 
-                        return SfCircularChart(
-                          series: <DoughnutSeries<Map<String, dynamic>,
-                              String>>[
-                            DoughnutSeries<Map<String, dynamic>, String>(
-                              explode: true,
-                              explodeIndex: 0,
-                              radius:
-                                  "${MediaQuery.of(context).size.height * 0.1}",
-                              dataSource: pieData,
-                              xValueMapper: (data, _) => data['xData'],
-                              yValueMapper: (data, _) => data['yData'],
-                              dataLabelMapper: (data, _) =>
-                                  '${data['xData']}: ${data['yData']}',
-                              dataLabelSettings:
-                                  const DataLabelSettings(isVisible: true),
-                            ),
-                          ],
+                        return Expanded(
+                          child: SfCircularChart(
+                            series: <DoughnutSeries<Map<String, dynamic>,
+                                String>>[
+                              DoughnutSeries<Map<String, dynamic>, String>(
+                                explode: true,
+                                explodeIndex: 0,
+                                radius:
+                                    "${MediaQuery.of(context).size.height * 0.1}",
+                                dataSource: pieData,
+                                xValueMapper: (data, _) => data['xData'],
+                                yValueMapper: (data, _) => data['yData'],
+                                dataLabelMapper: (data, _) =>
+                                    '${data['xData']}: ${data['yData']}',
+                                dataLabelSettings:
+                                    const DataLabelSettings(isVisible: true),
+                              ),
+                            ],
+                          ),
                         );
                       } else if (state is HomeErrorState) {
                         return Center(
