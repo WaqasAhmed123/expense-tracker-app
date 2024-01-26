@@ -14,17 +14,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final HomeCubit homeCubit = HomeCubit();
+  // final HomeCubit homeCubit = HomeCubit();
 
-  @override
-  void initState() {
-    super.initState();
-    homeCubit.loadTotalAmounts();
-  }
 
   @override
   Widget build(BuildContext context) {
-    // homeCubit.loadTotalAmounts();
+    HomeCubit homeCubit = BlocProvider.of(context);
+    homeCubit.loadTotalAmounts();
 
     // HomeCubit homeCubit = HomeCubit();
     // homeCubit.loadTotalAmounts();
@@ -62,8 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
                       print("rebuilded");
+                      // homeCubit.loadTotalAmounts();
                       // HomeCubit homeCubit = HomeCubit();
-                      homeCubit.loadTotalAmounts();
                       if (state is HomeLoadingState) {
                         print("checked first state");
                         return const Center(
