@@ -74,11 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         List<Map<String, dynamic>> pieData = [
                           {
                             'xData': 'Income',
-                            'yData': state.totals['Income'] ?? 0
+                            'yData': state.totals['Income'] ?? 0,
+                            'color': Colors.green,
                           },
                           {
                             'xData': 'Expense',
-                            'yData': state.totals['Expense'] ?? 0
+                            'yData': state.totals['Expense'] ?? 0,
+                            'color': Colors.pink,
                           },
                         ];
 
@@ -98,12 +100,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     // explode: true,
                                     // explodeIndex: 0,
 
-                                    strokeWidth: 5,
+                                    // strokeWidth: 5,
                                     radius:
                                         "${MediaQuery.of(context).size.height * 0.1}",
                                     dataSource: pieData,
                                     xValueMapper: (data, _) => data['xData'],
                                     yValueMapper: (data, _) => data['yData'],
+                                    pointColorMapper: (data, _) =>
+                                        data['color'],
                                     // dataLabelMapper: (data, _) =>
                                     //     '${data['xData']}: ${data['yData']}',
                                     dataLabelSettings: const DataLabelSettings(
