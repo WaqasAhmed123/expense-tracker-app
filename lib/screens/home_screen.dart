@@ -112,15 +112,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                             ),
-                            // Column(
-                            //   children: [
-                            //     chartRep(color: Colors.pink, text: "Expnese"),
-                            //     const SizedBox(
-                            //       height: 10,
-                            //     ),
-                            //     chartRep(color: Colors.green, text: "Income"),
-                            //   ],
-                            // )
+                            Column(
+                              children: [
+                                chartRep(color: Colors.pink, text: "Expnese"),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                chartRep(color: Colors.green, text: "Income"),
+                              ],
+                            )
                           ],
                         );
                       } else if (state is HomeErrorState) {
