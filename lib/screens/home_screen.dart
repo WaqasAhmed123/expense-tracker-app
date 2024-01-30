@@ -105,10 +105,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 series: <DoughnutSeries<Map<String, dynamic>,
                                     String>>[
                                   DoughnutSeries<Map<String, dynamic>, String>(
-                                    // explode: true,
+                                    explode: true,
+                                    explodeOffset: "1%",
+                                    explodeAll: true,
                                     // explodeIndex: 0,
 
                                     // strokeWidth: 5,
+                                    // strokeColor: cologre,
                                     radius:
                                         "${MediaQuery.of(context).size.height * 0.1}",
                                     dataSource: pieData,
@@ -116,11 +119,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     yValueMapper: (data, _) => data['yData'],
                                     pointColorMapper: (data, _) =>
                                         data['color'],
+
                                     // dataLabelMapper: (data, _) =>
                                     //     '${data['xData']}: ${data['yData']}',
                                     dataLabelSettings: const DataLabelSettings(
                                         isVisible: false),
                                   ),
+
+                                  // layoutConfig: charts.LayoutConfig(
                                 ],
                               ),
                               // ),
