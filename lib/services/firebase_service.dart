@@ -34,37 +34,40 @@ class FirebaseService {
   }
 
   static Future<Map<String, double>> getTotalAmounts() async {
-  try {
-    QuerySnapshot querySnapshot = await entriesCollection.get();
+    try {
+      QuerySnapshot querySnapshot = await entriesCollection.get();
 
-    List<EntryModel> entryModels = querySnapshot.docs
-        .map((doc) => EntryModel.fromMap(doc.data() as Map<String, dynamic>))
-        .toList();
+      List<EntryModel> entryModels = querySnapshot.docs
+          .map((doc) => EntryModel.fromMap(doc.data() as Map<String, dynamic>))
+          .toList();
 
-    double totalIncome = entryModels
-        .where((entry) => entry.entryType == 'Income')
-        .map((entry) => entry.amount)
-        .fold(0.0, (sum, amount) => sum + amount);
+      double totalIncome = entryModels
+          .where((entry) => entry.entryType == 'Income')
+          .map((entry) => entry.amount)
+          .fold(0.0, (sum, amount) => sum + amount);
 
-    double totalExpense = entryModels
-        .where((entry) => entry.entryType == 'Expense')
-        .map((entry) => entry.amount)
-        .fold(0.0, (sum, amount) => sum + amount);
+      double totalExpense = entryModels
+          .where((entry) => entry.entryType == 'Expense')
+          .map((entry) => entry.amount)
+          .fold(0.0, (sum, amount) => sum + amount);
 
-    print("Total Income: $totalIncome");
-    print("Total Expense: $totalExpense");
+      print("Total Income: $totalIncome");
+      print("Total Expense: $totalExpense");
+      print("Total Expense: ${totalIncome - totalExpense}");
 
-    return {
-      'Income': totalIncome,
-      'Expense': totalExpense,
-    };
-  } catch (e) {
-    print('Error getting total amounts: $e');
-    return {
-      'Income': 0.0,
-      'Expense': 0.0,
-    };
+      return {
+        'Income': totalIncome,
+        'Expense': totalExpense,
+        "Saving": (totalIncome - totalExpense)
+        // <0.0?"Saving":0.0:
+        // "Saving":(totalIncome - totalExpense)
+      };
+    } catch (e) {
+      print('Error getting total amounts: $e');
+      return {
+        'Income': 0.0,
+        'Expense': 0.0,
+      };
+    }
   }
-}
-
 }

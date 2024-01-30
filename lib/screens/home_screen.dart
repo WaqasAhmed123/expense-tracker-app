@@ -85,6 +85,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             'yData': state.totals['Expense'] ?? 0,
                             'color': Colors.pink,
                           },
+                          {
+                            'xData': 'Saving',
+                            'yData': state.totals['Saving']! < 0
+                                ? 0
+                                : state.totals['Saving']!,
+                            'color': Colors.grey,
+                          },
                         ];
 
                         return Row(
@@ -106,12 +113,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     String>>[
                                   DoughnutSeries<Map<String, dynamic>, String>(
                                     explode: true,
-                                    explodeOffset: "1%",
+                                    explodeOffset: "2%",
                                     explodeAll: true,
-                                    // explodeIndex: 0,
+                                    // explodeIndex: 1,
 
                                     // strokeWidth: 5,
                                     // strokeColor: cologre,
+                                    innerRadius: '80%',
                                     radius:
                                         "${MediaQuery.of(context).size.height * 0.1}",
                                     dataSource: pieData,
@@ -138,6 +146,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 10,
                                 ),
                                 chartRep(color: Colors.green, text: "Income"),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                chartRep(color: Colors.grey, text: "Saving"),
                               ],
                             )
                           ],
