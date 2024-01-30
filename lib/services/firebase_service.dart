@@ -33,7 +33,7 @@ class FirebaseService {
     }
   }
 
-  static Future<Map<String, dynamic>> getTotalAmounts() async {
+  static Future<Map<String, dynamic>> getTransactionData() async {
     try {
       QuerySnapshot querySnapshot = await entriesCollection.get();
 
@@ -60,7 +60,7 @@ class FirebaseService {
         'Income': totalIncome,
         'Expense': totalExpense,
         "Saving": (totalIncome - totalExpense),
-        "transactionData":entryModels
+        "transactionData": entryModels
         // <0.0?"Saving":0.0:
         // "Saving":(totalIncome - totalExpense)
       };
