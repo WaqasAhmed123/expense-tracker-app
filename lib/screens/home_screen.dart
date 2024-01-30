@@ -2,7 +2,6 @@ import 'package:blocship/cubits/home_cubit.dart';
 import 'package:blocship/screens/entry_screen.dart';
 import 'package:blocship/states/home_screen_state.dart';
 import 'package:blocship/widgets/chart_rep.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
