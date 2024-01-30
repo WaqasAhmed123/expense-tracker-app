@@ -170,15 +170,32 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    return transactionDetails(
-                        context: context,
-                        title: "title",
-                        description: "description",
-                        amount: "500");
-                  }),
+              child:
+                  BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
+                if (state is HomeLoadedState) {
+                  return ListView.builder(
+                      itemCount: state.totals["transactionData"].length,
+                      itemBuilder: (context, index) {
+                        return transactionDetails(
+                            context: context,
+                            title: state.totals["transactionData"][index].title,
+                            description: state
+                                .totals["transactionData"][index].description,
+                            // iconColor: state.totals["transactionData"][index]
+                            //             .entryType ==
+                            //         "Income"
+                            //     ? Colors.green
+                            //     : Colors.red,
+                            amount: state
+                                .totals["transactionData"][index].amount
+                                .toStringAsFixed(0)
+                                .toString());
+                      });
+                } else {
+                  return const SizedBox();
+                }
+                // child:
+              }),
             )
             // SizedBox(
             //   height: MediaQuery.sizeOf(context).height*0.7,

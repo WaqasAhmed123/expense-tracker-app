@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget transactionDetails(
-    {icon, iconColor, title, description, date, time, amount, context}) {
+    {icon,  Color? iconColor, title, description, date, time, amount, context}) {
   return Card(
       color: Colors.white,
       elevation: 5, // Set the elevation (shadow) of the card
@@ -21,7 +21,7 @@ Widget transactionDetails(
           backgroundColor: Colors.grey.withOpacity(0.3),
           child: Icon(
             icon,
-            color: iconColor,
+            // color:Color(iconColor) ,
           ),
         ),
         title: Align(
