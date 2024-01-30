@@ -55,6 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         label: const Text("Add")),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
                       print("rebuilded");
@@ -91,37 +94,36 @@ class _HomeScreenState extends State<HomeScreen> {
                             ConstrainedBox(
                               constraints: const BoxConstraints.expand(
                                   height: 150, width: 200),
-                              child: SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.5, //
-                                child: SfCircularChart(
-                                  centerY: '80',
-                                  margin: EdgeInsets.zero,
-                                  // borderWidth: 10,
-                                  series: <DoughnutSeries<Map<String, dynamic>,
-                                      String>>[
-                                    DoughnutSeries<Map<String, dynamic>,
-                                        String>(
-                                      // explode: true,
-                                      // explodeIndex: 0,
+                              // child:
+                              // SizedBox(
+                              // // width:
+                              //     MediaQuery.of(context).size.width * 0.5, //
+                              child: SfCircularChart(
+                                centerY: '80',
+                                margin: EdgeInsets.zero,
+                                // borderWidth: 10,
+                                series: <DoughnutSeries<Map<String, dynamic>,
+                                    String>>[
+                                  DoughnutSeries<Map<String, dynamic>, String>(
+                                    // explode: true,
+                                    // explodeIndex: 0,
 
-                                      // strokeWidth: 5,
-                                      radius:
-                                          "${MediaQuery.of(context).size.height * 0.1}",
-                                      dataSource: pieData,
-                                      xValueMapper: (data, _) => data['xData'],
-                                      yValueMapper: (data, _) => data['yData'],
-                                      pointColorMapper: (data, _) =>
-                                          data['color'],
-                                      // dataLabelMapper: (data, _) =>
-                                      //     '${data['xData']}: ${data['yData']}',
-                                      dataLabelSettings:
-                                          const DataLabelSettings(
-                                              isVisible: false),
-                                    ),
-                                  ],
-                                ),
+                                    // strokeWidth: 5,
+                                    radius:
+                                        "${MediaQuery.of(context).size.height * 0.1}",
+                                    dataSource: pieData,
+                                    xValueMapper: (data, _) => data['xData'],
+                                    yValueMapper: (data, _) => data['yData'],
+                                    pointColorMapper: (data, _) =>
+                                        data['color'],
+                                    // dataLabelMapper: (data, _) =>
+                                    //     '${data['xData']}: ${data['yData']}',
+                                    dataLabelSettings: const DataLabelSettings(
+                                        isVisible: false),
+                                  ),
+                                ],
                               ),
+                              // ),
                             ),
                             Column(
                               children: [
