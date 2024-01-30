@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../widgets/transaction_details.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -166,7 +168,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: 1,
+                  itemBuilder: (context, index) {
+                    return transactionDetails(
+                        context: context,
+                        title: "title",
+                        description: "description",
+                        amount: "500");
+                  }),
             )
+            // SizedBox(
+            //   height: MediaQuery.sizeOf(context).height*0.7,
+            //   c
+            // )
           ],
         ),
       ),
