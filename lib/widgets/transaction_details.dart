@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget transaction() {
+Widget transactionDetails() {
   return const Card(
     child: Row(
       children: [Column()],

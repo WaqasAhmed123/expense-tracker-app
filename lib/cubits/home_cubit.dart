@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:blocship/states/home_screen_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,9 +9,9 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       Map<String, double> totals = await FirebaseService.getTotalAmounts();
       print(totals);
-    emit(HomeLoadedState(totals));
+      emit(HomeLoadedState(totals));
     } catch (e) {
-    emit(HomeErrorState("Error loading data: $e"));
+      emit(HomeErrorState("Error loading data: $e"));
     }
   }
 }
