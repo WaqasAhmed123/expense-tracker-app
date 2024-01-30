@@ -7,7 +7,7 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitialState());
   void loadTotalAmounts() async {
     try {
-      Map<String, double> totals = await FirebaseService.getTotalAmounts();
+      Map<String, dynamic> totals = await FirebaseService.getTotalAmounts();
       print(totals);
       emit(HomeLoadedState(totals));
     } catch (e) {

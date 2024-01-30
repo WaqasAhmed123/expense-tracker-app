@@ -5,7 +5,7 @@ class HomeInitialState extends HomeState {}
 class HomeLoadingState extends HomeState {}
 
 class HomeLoadedState extends HomeState {
-  final Map<String, double> totals;
+  final Map<String, dynamic> totals;
 
   HomeLoadedState(this.totals);
 }

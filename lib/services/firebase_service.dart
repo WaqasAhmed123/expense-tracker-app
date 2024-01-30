@@ -33,7 +33,7 @@ class FirebaseService {
     }
   }
 
-  static Future<Map<String, double>> getTotalAmounts() async {
+  static Future<Map<String, dynamic>> getTotalAmounts() async {
     try {
       QuerySnapshot querySnapshot = await entriesCollection.get();
 
@@ -54,11 +54,13 @@ class FirebaseService {
       print("Total Income: $totalIncome");
       print("Total Expense: $totalExpense");
       print("Total Expense: ${totalIncome - totalExpense}");
+      print("Total list: $entryModels");
 
       return {
         'Income': totalIncome,
         'Expense': totalExpense,
-        "Saving": (totalIncome - totalExpense)
+        "Saving": (totalIncome - totalExpense),
+        "transactionData":entryModels
         // <0.0?"Saving":0.0:
         // "Saving":(totalIncome - totalExpense)
       };
