@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../services/firebase_service.dart';
 
-class HomeCubit extends Cubit<HomeState> {
+ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitialState());
   void loadTotalAmounts() async {
     try {
@@ -16,5 +16,5 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void transactionData() {}
+  // void transactionData() {}
 }

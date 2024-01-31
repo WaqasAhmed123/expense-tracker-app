@@ -1,3 +1,4 @@
+import 'package:blocship/cubits/home_cubit.dart';
 import 'package:blocship/services/firebase_service.dart';
 import 'package:blocship/states/entry_screen_state.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import '../models/entries_model.dart';
 
 class EntryCubit extends Cubit<EntryState> {
   EntryCubit() : super(EntryInitialState());
+
 //  EntryCubit= BlocProvider.of(context)
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -19,7 +21,7 @@ class EntryCubit extends Cubit<EntryState> {
   String amount = "";
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isButtonEnabled = false;
-  
+
   datePicked({selectedDateNew}) {
     selectedDate = selectedDateNew;
     emit(DatePickedState());
@@ -110,5 +112,6 @@ class EntryCubit extends Cubit<EntryState> {
         entryType: entryType,
         amount: amount);
     await FirebaseService.addEntry(entry);
+    emit(HomeCubit.loadTotalAmounts());
   }
 }

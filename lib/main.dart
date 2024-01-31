@@ -25,11 +25,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<HomeCubit>(create: (context) => HomeCubit(),lazy: false,),
-        BlocProvider<EntryCubit>(create: (context) => EntryCubit(),lazy: false,),
+        BlocProvider<HomeCubit>(
+          create: (context) => HomeCubit(),
+          lazy: false,
+        ),
+        BlocProvider<EntryCubit>(
+          create: (context) => EntryCubit(),
+          lazy: false,
+        ),
         // Add more providers if needed
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           textTheme: const TextTheme(
@@ -44,7 +51,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: const EntryScreen(),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
