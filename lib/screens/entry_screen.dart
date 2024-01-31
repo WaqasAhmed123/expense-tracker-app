@@ -1,4 +1,5 @@
 import 'package:blocship/cubits/entry_cubit.dart';
+import 'package:blocship/cubits/home_cubit.dart';
 import 'package:blocship/states/entry_screen_state.dart';
 import 'package:blocship/widgets/textInput.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:onscreen_num_keyboard/onscreen_num_keyboard.dart';
 
 class EntryScreen extends StatelessWidget {
-  const EntryScreen({super.key});
+  const EntryScreen({this.homeCubit});
+  final homeCubit;
 
   @override
   Widget build(BuildContext context) {

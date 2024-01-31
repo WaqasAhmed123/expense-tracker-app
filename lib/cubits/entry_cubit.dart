@@ -7,9 +7,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/entries_model.dart';
 
 class EntryCubit extends Cubit<EntryState> {
-  EntryCubit() : super(EntryInitialState());
+  EntryCubit({this.homeCubit}) : super(EntryInitialState());
+  final homeCubit;
 
 //  EntryCubit= BlocProvider.of(context)
+  // HomeCubit homeCubit = HomeCubit();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -112,6 +114,7 @@ class EntryCubit extends Cubit<EntryState> {
         entryType: entryType,
         amount: amount);
     await FirebaseService.addEntry(entry);
-    emit(HomeCubit.loadTotalAmounts());
+    await homeCubit.loadTotalAmounts();
+    // emit(homeCubit.loadTotalAmounts());
   }
 }
