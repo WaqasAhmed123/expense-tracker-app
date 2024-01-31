@@ -8,7 +8,7 @@ import '../models/entries_model.dart';
 
 class EntryCubit extends Cubit<EntryState> {
   EntryCubit({this.homeCubit}) : super(EntryInitialState());
-  final homeCubit;
+  var homeCubit;
 
 //  EntryCubit= BlocProvider.of(context)
   // HomeCubit homeCubit = HomeCubit();

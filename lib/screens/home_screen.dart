@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const EntryScreen()),
+                                builder: (context) => EntryScreen(homeCubit: homeCubit,)),
                           );
                         },
                         icon: const Icon(

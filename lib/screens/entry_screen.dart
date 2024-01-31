@@ -23,6 +23,7 @@ class EntryScreen extends StatelessWidget {
 
     // EntryCubit entryCubit = EntryCubit.get(context);
     EntryCubit entryCubit = BlocProvider.of(context);
+    entryCubit.homeCubit = homeCubit;
     return BlocBuilder<EntryCubit, EntryState>(
       builder: (context, state) {
         TextEditingController dateController = TextEditingController(
