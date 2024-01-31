@@ -263,7 +263,7 @@ class EntryScreen extends StatelessWidget {
                                   //     "title ${entryCubit.titleController.text}");
                                   // print(
                                   //     "description ${entryCubit.descriptionController.text}");
-                                  entryCubit.sendEntry(
+                                  await entryCubit.sendEntry(
                                       homeCubit: homeCubit,
                                       date: dateController.text,
                                       time: timeController.text,

@@ -98,7 +98,7 @@ class EntryCubit extends Cubit<EntryState> {
     // });
   }
 
-  void sendEntry({date, time, amount,homeCubit}) async {
+  sendEntry({date, time, amount, homeCubit}) async {
     print("date $date");
     print("time $time");
     print("entry $entryType");
