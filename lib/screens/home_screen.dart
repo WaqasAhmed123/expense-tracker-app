@@ -142,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Column(
                               children: [
-                                chartRep(color: Colors.pink, text: "Expnese"),
+                                chartRep(color: Colors.pink, text: "Expense"),
                                 const SizedBox(
                                   height: 10,
                                 ),
