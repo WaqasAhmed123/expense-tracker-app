@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:onscreen_num_keyboard/onscreen_num_keyboard.dart';
 
 class EntryScreen extends StatelessWidget {
-  const EntryScreen({this.homeCubit});
+  const EntryScreen({super.key, this.homeCubit});
   final homeCubit;
 
   @override
@@ -23,7 +23,7 @@ class EntryScreen extends StatelessWidget {
 
     // EntryCubit entryCubit = EntryCubit.get(context);
     EntryCubit entryCubit = BlocProvider.of(context);
-    entryCubit.homeCubit = homeCubit;
+    // entryCubit.homeCubit = homeCubit;
     return BlocBuilder<EntryCubit, EntryState>(
       builder: (context, state) {
         TextEditingController dateController = TextEditingController(
@@ -264,6 +264,7 @@ class EntryScreen extends StatelessWidget {
                                   // print(
                                   //     "description ${entryCubit.descriptionController.text}");
                                   entryCubit.sendEntry(
+                                      homeCubit: homeCubit,
                                       date: dateController.text,
                                       time: timeController.text,
                                       amount: amountController.text);

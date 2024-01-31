@@ -7,8 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/entries_model.dart';
 
 class EntryCubit extends Cubit<EntryState> {
-  EntryCubit({this.homeCubit}) : super(EntryInitialState());
-  var homeCubit;
+  EntryCubit() : super(EntryInitialState());
+  // var homeCubit;
 
 //  EntryCubit= BlocProvider.of(context)
   // HomeCubit homeCubit = HomeCubit();
@@ -98,7 +98,7 @@ class EntryCubit extends Cubit<EntryState> {
     // });
   }
 
-  void sendEntry({date, time, amount}) async {
+  void sendEntry({date, time, amount,homeCubit}) async {
     print("date $date");
     print("time $time");
     print("entry $entryType");
