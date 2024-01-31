@@ -1,7 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget transactionDetails(
-    {icon,  Color? iconColor, title, description, date, time, amount, context}) {
+    {icon,
+    Color? iconColor,
+    title,
+    description,
+    date,
+    time,
+    amount,
+    context,
+    entryType}) {
   return Card(
       color: Colors.white,
       elevation: 5, // Set the elevation (shadow) of the card
@@ -20,7 +29,11 @@ Widget transactionDetails(
           radius: 50,
           backgroundColor: Colors.grey.withOpacity(0.3),
           child: Icon(
-            icon,
+            entryType == "Income"
+                ? CupertinoIcons.arrow_right
+                : CupertinoIcons.arrow_left,
+            color: entryType == "Income" ? Colors.green : Colors.red,
+            // icon,
             // color:Color(iconColor) ,
           ),
         ),

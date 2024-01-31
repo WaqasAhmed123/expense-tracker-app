@@ -181,6 +181,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: state.totals["transactionData"][index].title,
                             description: state
                                 .totals["transactionData"][index].description,
+                            entryType: state
+                                .totals["transactionData"][index].entryType,
                             // iconColor: state.totals["transactionData"][index]
                             //             .entryType ==
                             //         "Income"
