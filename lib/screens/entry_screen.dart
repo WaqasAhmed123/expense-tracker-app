@@ -249,7 +249,6 @@ class EntryScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.bottomRight,
                         child: FloatingActionButton(
-                          // foregroundColor: Colors.blue,
                           backgroundColor: entryCubit.isButtonEnabled
                               ? Colors.blue
                               : Colors.grey,
