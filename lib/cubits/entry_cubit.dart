@@ -14,8 +14,8 @@ class EntryCubit extends Cubit<EntryState> {
   // HomeCubit homeCubit = HomeCubit();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  TextEditingController dateController = TextEditingController();
-  TextEditingController timeController = TextEditingController();
+  // TextEditingController dateController = TextEditingController();
+  // TextEditingController timeController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
@@ -115,6 +115,8 @@ class EntryCubit extends Cubit<EntryState> {
         amount: amount);
     await FirebaseService.addEntry(entry);
     await homeCubit.loadTotalAmounts();
+    titleController.clear();
+    descriptionController.clear();
     // emit(homeCubit.loadTotalAmounts());
   }
 }

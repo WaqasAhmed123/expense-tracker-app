@@ -92,7 +92,7 @@ class EntryScreen extends StatelessWidget {
                                       initialDate: entryCubit.selectedDate,
                                       firstDate: DateTime(2015, 8),
                                       lastDate: DateTime(2101));
-                                  print(entryCubit.dateController);
+                                  // print(entryCubit.dateController);
                                   if (picked != null &&
                                       picked != entryCubit.selectedDate) {
                                     entryCubit.datePicked(
@@ -268,6 +268,7 @@ class EntryScreen extends StatelessWidget {
                                       date: dateController.text,
                                       time: timeController.text,
                                       amount: amountController.text);
+                                  dateController.clear();
                                   Navigator.pop(context);
                                   // Navigator.push(
                                   //   context,
