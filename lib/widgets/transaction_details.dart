@@ -37,32 +37,26 @@ Widget transactionDetails(
             // color:Color(iconColor) ,
           ),
         ),
-        title: Align(
-          alignment: const Alignment(-1.2, 0),
-          child: Text(title,
+        title: Text(title,
+            style: TextStyle(
+              color: Colors.black.withOpacity(0.8),
+              fontSize: 16,
+            )),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              description,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Text(
+              "$date at $time",
               style: TextStyle(
-                color: Colors.black.withOpacity(0.8),
-                fontSize: 16,
-              )),
-        ),
-        subtitle: Align(
-          alignment: const Alignment(-1.4, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                description,
-                style: Theme.of(context).textTheme.bodyMedium,
+                fontSize: 12,
+                color: Colors.grey.withOpacity(0.5),
               ),
-              Text(
-                "$date at $time",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey.withOpacity(0.5),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         trailing: Text(amount,
             style: TextStyle(

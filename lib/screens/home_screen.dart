@@ -47,7 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => EntryScreen(homeCubit: homeCubit,)),
+                                builder: (context) => EntryScreen(
+                                      homeCubit: homeCubit,
+                                    )),
                           );
                         },
                         icon: const Icon(
@@ -141,6 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               // ),
                             ),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 chartRep(color: Colors.pink, text: "Expense"),
                                 const SizedBox(
