@@ -260,8 +260,8 @@ class EntryScreen extends StatelessWidget {
                                   // print("object ${amountController.text}");
                                   // print("object ${timeController.text}");
                                   // print(
-                                  //     "title ${entryCubit.titleController.text}");
                                   // print(
+                                  //     "title ${entryCubit.titleController.text}");
                                   //     "description ${entryCubit.descriptionController.text}");
                                   await entryCubit.sendEntry(
                                       homeCubit: homeCubit,
