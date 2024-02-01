@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               // ),
                             ),
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 chartRep(color: Colors.pink, text: "Expense"),
                                 const SizedBox(
