@@ -24,6 +24,8 @@ class EntryScreen extends StatelessWidget {
     // EntryCubit entryCubit = EntryCubit.get(context);
     EntryCubit entryCubit = BlocProvider.of(context);
     // entryCubit.homeCubit = homeCubit;
+    TextEditingController amountController =
+        TextEditingController(text: entryCubit.amount);
     return BlocBuilder<EntryCubit, EntryState>(
       builder: (context, state) {
         TextEditingController dateController = TextEditingController(
@@ -33,8 +35,6 @@ class EntryScreen extends StatelessWidget {
           text: DateFormat('h:mm a').format(DateTime(2022, 1, 1,
               entryCubit.selectedTime.hour, entryCubit.selectedTime.minute)),
         );
-        TextEditingController amountController =
-            TextEditingController(text: entryCubit.amount);
         return Scaffold(
           // appBar: AppBar(
           //   title: const Text('Expense Entry'),
@@ -204,6 +204,7 @@ class EntryScreen extends StatelessWidget {
                       textInput(
                         context: context,
                         contoller: amountController,
+
                         readOnly: true,
                         showCursor: true,
                         hintText: "Amount",
@@ -214,17 +215,20 @@ class EntryScreen extends StatelessWidget {
                       ),
                       NumericKeyboard(
                           onKeyboardTap: (value) {
-                            entryCubit.onKeyboardTap(value);
+                            entryCubit.onKeyboardTap(
+                                value: value,
+                                amountController: amountController);
                             entryCubit.updateButtonState();
                           },
                           textStyle: const TextStyle(
                               fontSize: 20.0, color: Colors.black),
                           rightButtonFn: () {
-                            entryCubit.rightButtonFn();
+                            entryCubit.rightButtonFn(
+                                amountController: amountController);
                           },
-                          rightButtonLongPressFn: () {
-                            entryCubit.rightButtonFn();
-                          },
+                          // rightButtonLongPressFn: () {
+                          //   entryCubit.rightButtonFn();
+                          // },
                           rightIcon: GestureDetector(
                             child: Container(
                               width: 200,

@@ -16,7 +16,7 @@ class EntryCubit extends Cubit<EntryState> {
   TextEditingController descriptionController = TextEditingController();
   // TextEditingController dateController = TextEditingController();
   // TextEditingController timeController = TextEditingController();
-  TextEditingController amountController = TextEditingController();
+  // TextEditingController amountController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   String entryType = "Expense";
@@ -40,7 +40,7 @@ class EntryCubit extends Cubit<EntryState> {
   //   emit(AmountSetState());
   //   // });
   // }
-  onKeyboardTap(String value) {
+  onKeyboardTap({required String value,amountController}) {
     final int cursorPosition = amountController.selection.baseOffset;
 
     // Ensure cursor position is within bounds
@@ -78,8 +78,9 @@ class EntryCubit extends Cubit<EntryState> {
     emit(AmountSetState());
   }
 
-  rightButtonFn() {
+  rightButtonFn({amountController}) {
     final int cursorPosition = amountController.selection.baseOffset;
+    print(cursorPosition);
     if (cursorPosition > 0) {
       amount = amount.substring(0, cursorPosition - 1) +
           amount.substring(cursorPosition);
