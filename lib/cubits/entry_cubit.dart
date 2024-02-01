@@ -1,4 +1,3 @@
-import 'package:blocship/cubits/home_cubit.dart';
 import 'package:blocship/services/firebase_service.dart';
 import 'package:blocship/states/entry_screen_state.dart';
 import 'package:flutter/material.dart';

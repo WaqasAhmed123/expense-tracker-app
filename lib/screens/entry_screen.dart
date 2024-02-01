@@ -1,5 +1,4 @@
 import 'package:blocship/cubits/entry_cubit.dart';
-import 'package:blocship/cubits/home_cubit.dart';
 import 'package:blocship/states/entry_screen_state.dart';
 import 'package:blocship/widgets/textInput.dart';
 import 'package:flutter/material.dart';
