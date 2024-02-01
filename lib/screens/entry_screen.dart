@@ -12,17 +12,7 @@ class EntryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // String amount = "";
-
-    // onKeyboardTap(String value) {
-    //   // setState(() {
-    //   amount = amount + value;
-    //   // });
-    // }
-
-    // EntryCubit entryCubit = EntryCubit.get(context);
     EntryCubit entryCubit = BlocProvider.of(context);
-    // entryCubit.homeCubit = homeCubit;
     TextEditingController amountController =
         TextEditingController(text: entryCubit.amount);
     return BlocBuilder<EntryCubit, EntryState>(
@@ -35,9 +25,6 @@ class EntryScreen extends StatelessWidget {
               entryCubit.selectedTime.hour, entryCubit.selectedTime.minute)),
         );
         return Scaffold(
-          // appBar: AppBar(
-          //   title: const Text('Expense Entry'),
-          // ),
           body: SafeArea(
             child: SingleChildScrollView(
               child: Padding(
@@ -67,7 +54,6 @@ class EntryScreen extends StatelessWidget {
                         contoller: entryCubit.descriptionController,
                         onChanged: (value) {
                           entryCubit.updateButtonState();
-                          // entryCubit.descriptionController.text = value;
                         },
                       ),
                       const SizedBox(height: 16),
@@ -112,16 +98,6 @@ class EntryScreen extends StatelessWidget {
                                 context: context,
                                 contoller: dateController),
                           ),
-                          // const Expanded(
-                          //   child: TextField(
-                          //     // controller:entryCubit,
-                          //     // controller: TextEditingController(
-                          //     //     text: DateFormat('dd MMM yyyy')
-                          //     //         .format(entryCubit.selectedDate)),
-                          //     readOnly: true,
-                          //     decoration: InputDecoration(labelText: 'Date'),
-                          //   ),
-                          // ),
                         ],
                       ),
                       const SizedBox(height: 16),
@@ -171,23 +147,13 @@ class EntryScreen extends StatelessWidget {
                         },
                         style: Theme.of(context).textTheme.bodyMedium,
                         value: "Expense",
-                        // validator: (value) {
-                        //   if (value == null) {
-                        //     print("the value is $value");
-                        //     return ("Field can't be null");
-                        //   }
-                        //   return null;
-                        // },
                         decoration: InputDecoration(
                             filled: true,
                             fillColor: const Color(0xffffffff),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: BorderSide.none),
-                            isDense: true
-                            // contentPadding: const EdgeInsets.symmetric(
-                            //     horizontal: 15, vertical: 16)
-                            ),
+                            isDense: true),
                         items: ["Expense", "Income"]
                             .map<DropdownMenuItem<String>>((String key) {
                           return DropdownMenuItem<String>(
@@ -203,14 +169,9 @@ class EntryScreen extends StatelessWidget {
                       textInput(
                         context: context,
                         contoller: amountController,
-
                         readOnly: true,
                         showCursor: true,
                         hintText: "Amount",
-                        // onChanged: (value) {
-                        // entryCubit.updateButtonState();
-                        //   print(value);
-                        // },
                       ),
                       NumericKeyboard(
                           onKeyboardTap: (value) {
@@ -225,9 +186,6 @@ class EntryScreen extends StatelessWidget {
                             entryCubit.rightButtonFn(
                                 amountController: amountController);
                           },
-                          // rightButtonLongPressFn: () {
-                          //   entryCubit.rightButtonFn();
-                          // },
                           rightIcon: GestureDetector(
                             child: Container(
                               width: 200,
@@ -245,9 +203,6 @@ class EntryScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          leftButtonFn: () {
-                            print('left button clicked');
-                          },
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly),
                       Align(
                         alignment: Alignment.bottomRight,

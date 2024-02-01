@@ -1,5 +1,3 @@
-import 'package:blocship/models/entries_model.dart';
-
 abstract class HomeState {}
 
 class HomeInitialState extends HomeState {}
@@ -17,10 +15,3 @@ class HomeErrorState extends HomeState {
 
   HomeErrorState(this.errorMessage);
 }
-
-// class TransactionDataState extends HomeState {
-//   // final String errorMessage;
-//   List<EntryModel> transactionData;
-
-//   TransactionDataState(this.transactionData);
-// }

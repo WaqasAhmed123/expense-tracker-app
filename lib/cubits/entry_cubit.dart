@@ -7,15 +7,8 @@ import '../models/entries_model.dart';
 
 class EntryCubit extends Cubit<EntryState> {
   EntryCubit() : super(EntryInitialState());
-  // var homeCubit;
-
-//  EntryCubit= BlocProvider.of(context)
-  // HomeCubit homeCubit = HomeCubit();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  // TextEditingController dateController = TextEditingController();
-  // TextEditingController timeController = TextEditingController();
-  // TextEditingController amountController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   String entryType = "Expense";
@@ -23,6 +16,7 @@ class EntryCubit extends Cubit<EntryState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isButtonEnabled = false;
 
+// show picked time and date on scr
   datePicked({selectedDateNew}) {
     selectedDate = selectedDateNew;
     emit(DatePickedState());
@@ -33,41 +27,29 @@ class EntryCubit extends Cubit<EntryState> {
     emit(TimePickedState());
   }
 
-  // onKeyboardTap(String value) {
-  //   // setState(() {
-  //   amount = amount + value;
-  //   emit(AmountSetState());
-  //   // });
-  // }
-  onKeyboardTap({required String value,amountController}) {
+// handle onscr keyboard cursor
+  onKeyboardTap({required String value, amountController}) {
     final int cursorPosition = amountController.selection.baseOffset;
 
-    // Ensure cursor position is within bounds
     if (cursorPosition >= 0 && cursorPosition <= amount.length) {
-      // Update the text with the new value at the cursor position
       amount = amount.substring(0, cursorPosition) +
           value +
           amount.substring(cursorPosition);
 
-      // Update the controller with the new TextEditingValue
       amountController.value = TextEditingValue(
         text: amount,
         selection: TextSelection.collapsed(offset: cursorPosition + 1),
       );
     } else if (cursorPosition == -1) {
-      // If cursor is at the start, append the value
       amount = value + amount;
 
-      // Update the controller with the new TextEditingValue
       amountController.value = TextEditingValue(
         text: amount,
         selection: TextSelection.collapsed(offset: amount.length),
       );
     } else {
-      // If cursor is at the end, append the value
       amount += value;
 
-      // Update the controller with the new TextEditingValue
       amountController.value = TextEditingValue(
         text: amount,
         selection: TextSelection.collapsed(offset: amount.length),
@@ -92,24 +74,16 @@ class EntryCubit extends Cubit<EntryState> {
   }
 
   void updateButtonState() {
-    // setState(() {
     isButtonEnabled = formKey.currentState?.validate() ?? false;
     emit(ButtonEnableState());
-    // });
   }
 
+// upload data
   sendEntry({date, time, amount, homeCubit}) async {
-    print("date $date");
-    print("time $time");
-    print("entry $entryType");
-    print("amount $amount");
-    print("title ${titleController.text}");
-    print("description ${descriptionController.text}");
-
     EntryModel entry = EntryModel(
         title: titleController.text,
         description: descriptionController.text,
-        date: date ?? "", // Using the null-aware operator to handle null values
+        date: date ?? "",
         time: time ?? "",
         entryType: entryType,
         amount: amount);
@@ -117,7 +91,5 @@ class EntryCubit extends Cubit<EntryState> {
     await homeCubit.loadTotalAmounts();
     titleController.clear();
     descriptionController.clear();
-    // amount = "";
-    // emit(homeCubit.loadTotalAmounts());
   }
 }

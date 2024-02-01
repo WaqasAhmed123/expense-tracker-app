@@ -16,15 +16,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // final HomeCubit homeCubit = HomeCubit();
-
   @override
   Widget build(BuildContext context) {
     HomeCubit homeCubit = BlocProvider.of(context);
     homeCubit.loadTotalAmounts();
-
-    // HomeCubit homeCubit = HomeCubit();
-    // homeCubit.loadTotalAmounts();
 
     return Scaffold(
         body: SafeArea(
@@ -63,20 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
-                      print("rebuilded");
-                      // homeCubit.loadTotalAmounts();
-                      // HomeCubit homeCubit = HomeCubit();
                       if (state is HomeLoadingState) {
-                        print("checked first state");
                         return const Center(
                           child: CircularProgressIndicator(
                             color: Colors.blue,
                           ),
                         );
                       } else if (state is HomeLoadedState) {
-                        print("checked second state");
-
-                        // Use state.totals to populate your UI
+                        // Use state.totals to populate  UI
                         List<Map<String, dynamic>> pieData = [
                           {
                             'xData': 'Income',
@@ -99,15 +88,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         return Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          // mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             ConstrainedBox(
                               constraints: const BoxConstraints.expand(
                                   height: 150, width: 200),
-                              // child:
-                              // SizedBox(
-                              // // width:
-                              //     MediaQuery.of(context).size.width * 0.5, //
                               child: SfCircularChart(
                                 centerY: '80',
                                 margin: EdgeInsets.zero,
@@ -118,10 +102,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     explode: true,
                                     explodeOffset: "2%",
                                     explodeAll: true,
-                                    // explodeIndex: 1,
-
-                                    // strokeWidth: 5,
-                                    // strokeColor: cologre,
                                     innerRadius: '80%',
                                     radius:
                                         "${MediaQuery.of(context).size.height * 0.1}",
@@ -130,14 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     yValueMapper: (data, _) => data['yData'],
                                     pointColorMapper: (data, _) =>
                                         data['color'],
-
-                                    // dataLabelMapper: (data, _) =>
-                                    //     '${data['xData']}: ${data['yData']}',
                                     dataLabelSettings: const DataLabelSettings(
                                         isVisible: false),
                                   ),
-
-                                  // layoutConfig: charts.LayoutConfig(
                                 ],
                               ),
                               // ),
@@ -164,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       } else {
                         return const Center(
-                          child: Text('Unknown state'),
+                          child: Text('Data not available now'),
                         );
                       }
                     },
@@ -186,11 +161,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .totals["transactionData"][index].description,
                             entryType: state
                                 .totals["transactionData"][index].entryType,
-                            // iconColor: state.totals["transactionData"][index]
-                            //             .entryType ==
-                            //         "Income"
-                            //     ? Colors.green
-                            //     : Colors.red,
                             amount: state
                                 .totals["transactionData"][index].amount
                                 .toStringAsFixed(0)
@@ -199,13 +169,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else {
                   return const SizedBox();
                 }
-                // child:
               }),
             )
-            // SizedBox(
-            //   height: MediaQuery.sizeOf(context).height*0.7,
-            //   c
-            // )
           ],
         ),
       ),
