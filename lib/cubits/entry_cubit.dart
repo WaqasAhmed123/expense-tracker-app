@@ -117,6 +117,7 @@ class EntryCubit extends Cubit<EntryState> {
     await homeCubit.loadTotalAmounts();
     titleController.clear();
     descriptionController.clear();
+    // amount = "";
     // emit(homeCubit.loadTotalAmounts());
   }
 }

@@ -256,25 +256,19 @@ class EntryScreen extends StatelessWidget {
                           shape: const CircleBorder(),
                           onPressed: entryCubit.isButtonEnabled
                               ? () async {
-                                  // print("object ${dateController.text}");
-                                  // print("object ${amountController.text}");
-                                  // print("object ${timeController.text}");
-                                  // print(
-                                  // print(
-                                  //     "title ${entryCubit.titleController.text}");
-                                  //     "description ${entryCubit.descriptionController.text}");
                                   await entryCubit.sendEntry(
                                       homeCubit: homeCubit,
                                       date: dateController.text,
                                       time: timeController.text,
                                       amount: amountController.text);
                                   dateController.clear();
-                                  Navigator.pop(context);
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => const HomeScreen()),
-                                  // );
+                                  timeController.clear();
+                                  amountController.clear();
+                                  entryCubit.amount = "";
+
+                                  if (context.mounted) {
+                                    Navigator.of(context).pop();
+                                  }
                                 }
                               : null,
                           child: const Center(
